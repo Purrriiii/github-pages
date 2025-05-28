@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docusign Agreement Desk: Comprehensive Market & Use Case Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Visualization & Content Choices:
+        - Hero, Challenge, Solution, IAM Ecosystem, Use Cases, Conclusion: Retained from previous SPA.
+        - Market Landscape: Textual overview of market segments (E-signature, DTM, CLM) with simple HTML/CSS for visual hierarchy. Goal: Inform/Organize.
+        - Detailed Competitor Analysis: Individual competitor summaries presented as distinct cards (HTML/Tailwind) for easy scanning. Goal: Inform/Compare.
+        - Comparative Analysis: Key feature comparison presented as a responsive HTML table to allow direct side-by-side evaluation. Goal: Compare/Organize.
+        - Strategic Insights: Strengths, Weaknesses, Opportunities, Challenges, and Recommendations presented as clear, concise bulleted lists within dedicated HTML/Tailwind sections. Goal: Inform/Organize.
+        - All charts (Sales & Procurement): Chart.js (Canvas).
+        - All diagrams/visuals (IAM Ecosystem, Market Segments): Structured HTML/CSS with Tailwind.
+        - Justification: These choices prioritize clarity, directness, and scannability for complex analytical content. HTML tables are used for direct comparisons, while cards and lists break down detailed information. All adhere strictly to NO SVG/Mermaid constraints. Interactions (tabs, smooth scroll) are maintained to enhance navigation without overcomplicating content presentation.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8; /* Light Blue-Gray Background */
+            color: #0747A6; /* Darkest Blue */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px; /* Max-width for charts */
+            margin-left: auto;
+            margin-right: auto;
+            height: 280px; /* Base height */
+            max-height: 350px; /* Max height */
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 320px;
+            }
+        }
+        .sticky-nav {
+            background-color: rgba(240, 244, 248, 0.85); /* Semi-transparent background */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .nav-link {
+            color: #0747A6;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #0065FF; /* Lighter Blue */
+        }
+        .section-title {
+            color: #0747A6; /* Darkest Blue */
+        }
+        .section-subtitle {
+            color: #4A5568; /* Gray-700 */
+        }
+        .accent-bg-light {
+            background-color: #EBF4FF; /* Very Light Blue */
+        }
+        .accent-bg-default {
+            background-color: #F0F4F8; /* Light Blue-Gray Background */
+        }
+        .accent-border {
+            border-color: #4C9AFF; /* Lightest Blue */
+        }
+        .accent-text {
+            color: #0065FF; /* Lighter Blue */
+        }
+        .primary-button {
+            background-color: #0065FF; /* Lighter Blue */
+            color: #FFFFFF;
+            transition: background-color 0.3s ease;
+        }
+        .primary-button:hover {
+            background-color: #0052CC; /* Primary Blue */
+        }
+        .kpi-card {
+            background-color: #FFFFFF;
+            border-left: 4px solid #0065FF; /* Lighter Blue */
+        }
+        .kpi-value {
+            color: #0065FF; /* Lighter Blue */
+        }
+        .kpi-label {
+            color: #0747A6; /* Darkest Blue */
+        }
+        .tab-button.active {
+            border-color: #0065FF;
+            color: #0065FF;
+            background-color: #EBF4FF;
+        }
+        .tab-button {
+            border-color: #4C9AFF;
+            color: #0747A6;
+        }
+        .competitor-card {
+            background-color: #FFFFFF;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-top: 4px solid #4C9AFF;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+        th, td {
+            border: 1px solid #EBF4FF;
+            padding: 0.75rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #EBF4FF;
+            font-weight: 600;
+            color: #0747A6;
+        }
+        tr:nth-child(even) {
+            background-color: #F0F4F8;
+        }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <nav id="navbar" class="sticky top-0 z-50 shadow-sm sticky-nav">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-semibold text-xl accent-text">Agreement Desk</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#hero" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#challenge" class="nav-link px-3 py-2 rounded-md text-sm font-medium">The Challenge</a>
+                        <a href="#solution" class="nav-link px-3 py-2 rounded-md text-sm font-medium">The Solution</a>
+                        <a href="#ecosystem" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Ecosystem</a>
+                        <a href="#market-landscape" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Market</a>
+                        <a href="#competitor-deep-dive" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Competitors</a>
+                        <a href="#comparative-analysis" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Comparison</a>
+                        <a href="#strategic-insights" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Insights</a>
+                        <a href="#use-cases" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Use Cases</a>
+                        <a href="#conclusion" class="nav-link px-3 py-2 rounded-md text-sm font-medium">Conclusion</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#hero" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#challenge" class="nav-link block px-3 py-2 rounded-md text-base font-medium">The Challenge</a>
+                <a href="#solution" class="nav-link block px-3 py-2 rounded-md text-base font-medium">The Solution</a>
+                <a href="#ecosystem" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Ecosystem</a>
+                <a href="#market-landscape" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Market Landscape</a>
+                <a href="#competitor-deep-dive" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Competitor Deep Dive</a>
+                <a href="#comparative-analysis" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Comparative Analysis</a>
+                <a href="#strategic-insights" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Strategic Insights</a>
+                <a href="#use-cases" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Use Cases</a>
+                <a href="#conclusion" class="nav-link block px-3 py-2 rounded-md text-base font-medium">Conclusion</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="py-16 md:py-24 accent-bg-light">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold section-title mb-6">
+                Docusign Agreement Desk
+            </h1>
+            <p class="text-xl md:text-2xl section-subtitle mb-8 max-w-3xl mx-auto">
+                Transforming agreement workflows through centralized intake, collaboration, and AI-powered automation.
+            </p>
+            <p class="text-md section-subtitle">Coming July 2025</p>
+        </div>
+    </section>
+
+    <section id="challenge" class="py-16 md:py-24 accent-bg-default">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold section-title text-center mb-4">The Pre-Signature Bottleneck</h2>
+            <p class="text-lg section-subtitle text-center mb-12 max-w-3xl mx-auto">
+                Traditional agreement processes are riddled with inefficiencies, causing delays, increasing costs, and straining business relationships. Docusign Agreement Desk is designed to address these core pain points.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <div class="kpi-card p-6 rounded-lg shadow-md">
+                    <div class="text-4xl font-bold kpi-value mb-2">15+</div>
+                    <p class="kpi-label">Internal handoffs before counterparty negotiation typically begins.</p>
+                </div>
+                <div class="kpi-card p-6 rounded-lg shadow-md">
+                    <div class="text-4xl font-bold kpi-value mb-2">55B</div>
+                    <p class="kpi-label">Hours wasted globally per year on inefficient agreement processes.</p>
+                </div>
+                <div class="kpi-card p-6 rounded-lg shadow-md">
+                    <div class="text-4xl font-bold kpi-value mb-2">21%</div>
+                    <p class="kpi-label">Revenue deferred to the next reporting period due to agreement delays.</p>
+                </div>
+                <div class="kpi-card p-6 rounded-lg shadow-md">
+                    <div class="text-4xl font-bold kpi-value mb-2">48%</div>
+                    <p class="kpi-label">Sales professionals reported deteriorated customer relationships from delays.</p>
+                </div>
+                <div class="kpi-card p-6 rounded-lg shadow-md">
+                    <div class="text-4xl font-bold kpi-value mb-2">62%</div>
+                    <p class="kpi-label">Struggle to locate and access previously approved contracts.</p>
+                </div>
+                <div class="kpi-card p-6 rounded-lg shadow-md">
+                    <div class="text-4xl font-bold kpi-value mb-2">45%</div>
+                    <p class="kpi-label">Still manually add information to contracts that already exists in other systems.</p>
+                </div>
+            </div>
+            <p class="text-center mt-12 text-lg section-subtitle">
+                These challenges highlight the urgent need for a smarter, more integrated approach to how agreements are created, negotiated, and approved.
+            </p>
+        </div>
+    </section>
+
+    <section id="solution" class="py-16 md:py-24 accent-bg-light">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold section-title text-center mb-4">Introducing Docusign Agreement Desk</h2>
+            <p class="text-lg section-subtitle text-center mb-12 max-w-3xl mx-auto">
+                A central hub within Docusign's Intelligent Agreement Management (IAM) platform, designed to streamline the entire pre-signature agreement lifecycle.
+            </p>
+
+            <div class="mb-12">
+                <div class="flex justify-center flex-wrap gap-2 sm:gap-4 mb-8">
+                    <button class="tab-button active text-xs sm:text-sm border-2 rounded-full px-4 py-2 font-semibold" data-tab="intake">📥 Simplified Intake</button>
+                    <button class="tab-button text-xs sm:text-sm border-2 rounded-full px-4 py-2 font-semibold" data-tab="collab">🤝 Real-time Collaboration</button>
+                    <button class="tab-button text-xs sm:text-sm border-2 rounded-full px-4 py-2 font-semibold" data-tab="ai">🤖 AI & Automation</button>
+                    <button class="tab-button text-xs sm:text-sm border-2 rounded-full px-4 py-2 font-semibold" data-tab="approval">✔️ Approvals</button>
+                    <button class="tab-button text-xs sm:text-sm border-2 rounded-full px-4 py-2 font-semibold" data-tab="dashboard">📊 Centralized Dashboard</button>
+                </div>
+
+                <div id="tab-content-container" class="bg-white p-6 sm:p-8 rounded-lg shadow-lg min-h-[200px]">
+                    <div id="intake-content" class="tab-content ">
+                        <h3 class="text-2xl font-semibold section-title mb-3">Simplified Intake</h3>
+                        <p class="section-subtitle">Automatically converts inbound emails or submissions via customizable forms into trackable tasks. This eliminates scattered requests and ensures all necessary information is gathered upfront, accelerating the start of every agreement.</p>
+                        <p class="font-semibold mt-2 accent-text">Benefit: Streamlines request initiation and reduces back-and-forth.</p>
+                    </div>
+                    <div id="collab-content" class="tab-content hidden">
+                        <h3 class="text-2xl font-semibold section-title mb-3">Real-time Collaboration & Negotiation Tools</h3>
+                        <p class="section-subtitle">Centralizes version tracking, redline management, commenting, and communication. Empowers teams to review, edit, and approve agreements faster with full transparency, ensuring everyone works from the current version.</p>
+                        <p class="font-semibold mt-2 accent-text">Benefit: Ensures clarity, speed, and a single source of truth during negotiations.</p>
+                    </div>
+                    <div id="ai-content" class="tab-content hidden">
+                        <h3 class="text-2xl font-semibold section-title mb-3">AI & Automation</h3>
+                        <p class="section-subtitle">Integrates Docusign AI-Assisted Review to compare agreements against legal playbooks and suggest redlines. Docusign Maestro enables no-code workflow automation for repetitive tasks like approvals and document generation.</p>
+                        <p class="font-semibold mt-2 accent-text">Benefit: Accelerates review cycles, enhances compliance, and reduces manual effort.</p>
+                    </div>
+                    <div id="approval-content" class="tab-content hidden">
+                        <h3 class="text-2xl font-semibold section-title mb-3">Streamlined Approvals</h3>
+                        <p class="section-subtitle">Allows designation of specific approvers for each request, maintaining a comprehensive audit trail of who approved what, along with real-time status updates. Vital for accountability and compliance.</p>
+                        <p class="font-semibold mt-2 accent-text">Benefit: Enhances accountability and ensures compliance with internal policies.</p>
+                    </div>
+                    <div id="dashboard-content" class="tab-content hidden">
+                        <h3 class="text-2xl font-semibold section-title mb-3">Centralized Dashboard & Enhanced Visibility</h3>
+                        <p class="section-subtitle">Provides a single, intuitive dashboard offering a clear, real-time view of status, activity history, and ownership for every agreement request. Empowers all stakeholders to stay informed and reduces manual status updates.</p>
+                        <p class="font-semibold mt-2 accent-text">Benefit: Increases transparency and empowers informed decision-making.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="ecosystem" class="py-16 md:py-24 accent-bg-default">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold section-title text-center mb-4">Part of the Docusign IAM Ecosystem</h2>
+            <p class="text-lg section-subtitle text-center mb-12 max-w-3xl mx-auto">
+                Agreement Desk is a key component of Docusign's Intelligent Agreement Management (IAM) platform, which provides an end-to-end solution to create, commit to, and manage agreements.
+            </p>
+            <div class="bg-white p-8 rounded-lg shadow-xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center">
+                    <div class="md:col-span-1 p-4 border accent-border rounded-lg">
+                        <h4 class="text-xl font-semibold mb-2 section-title">CREATE</h4>
+                        <p class="section-subtitle text-sm">Agreement Preparation</p>
+                        <p class="section-subtitle text-sm font-semibold accent-text">Agreement Desk</p>
+                    </div>
+                    <div class="text-4xl font-bold accent-text hidden md:block">&rarr;</div>
+                    <div class="text-4xl font-bold accent-text md:hidden mx-auto">&darr;</div>
+                     <div class="md:col-span-1 p-4 border accent-border rounded-lg">
+                        <h4 class="text-xl font-semibold mb-2 section-title">COMMIT</h4>
+                        <p class="section-subtitle text-sm">eSignature</p>
+                    </div>
+                    <div class="text-4xl font-bold accent-text hidden md:block">&rarr;</div>
+                     <div class="text-4xl font-bold accent-text md:hidden mx-auto">&darr;</div>
+                    <div class="md:col-span-1 p-4 border accent-border rounded-lg">
+                        <h4 class="text-xl font-semibold mb-2 section-title">MANAGE</h4>
+                        <p class="section-subtitle text-sm">CLM & Navigator</p>
+                    </div>
+                </div>
+                <p class="text-center mt-8 text-lg font-semibold accent-text">Powered by Docusign Iris (Purpose-Built AI)</p>
+                 <p class="text-center mt-2 section-subtitle text-sm">This integrated platform transforms static agreements into dynamic, data-rich assets, driving efficiency and insight across the entire agreement lifecycle.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="market-landscape" class="py-16 md:py-24 accent-bg-light">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold section-title text-center mb-4">The Evolving Agreement Management Market</h2>
+            <p class="text-lg section-subtitle text-center mb-12 max-w-3xl mx-auto">
+                The market for e-signature, digital transaction management (DTM), and document automation is highly competitive and rapidly evolving, with lines between segments increasingly blurring.
+            </p>
+            <div class="bg-white p-8 rounded-lg shadow-xl">
+                <h3 class="text-2xl font-semibold section-title mb-4">Market Segments</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-center">
+                    <div class="p-4 border accent-border rounded-lg">
+                        <h4 class="text-xl font-semibold mb-2 section-title">E-signature</h4>
+                        <p class="section-subtitle text-sm">Foundational layer focused on digital signing of documents.</p>
+                        <p class="text-xs accent-text mt-2">e.g., Docusign eSignature, Adobe Acrobat Sign</p>
+                    </div>
+                    <div class="p-4 border accent-border rounded-lg">
+                        <h4 class="text-xl font-semibold mb-2 section-title">Digital Transaction Management (DTM)</h4>
+                        <p class="section-subtitle text-sm">Broader workflow including preparation, execution, and management of documents.</p>
+                        <p class="text-xs accent-text mt-2">e.g., Docusign IAM Platform</p>
+                    </div>
+                    <div class="p-4 border accent-border rounded-lg">
+                        <h4 class="text-xl font-semibold mb-2 section-title">Document Automation / CLM</h4>
+                        <p class="section-subtitle text-sm">Automates the entire lifecycle of contracts from creation to management.</p>
+                        <p class="text-xs accent-text mt-2">e.g., Conga CLM, Ironclad CLM, Salesforce CLM</p>
+                    </div>
+                </div>
+                <p class="text-center mt-8 text-lg font-semibold accent-text">Convergence: Lines between these segments are blurring, driving demand for integrated platforms.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="competitor-deep-dive" class="py-16 md:py-24 accent-bg-default">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold section-title text-center mb-4">Key Competitors Overview</h2>
+            <p class="text-lg section-subtitle text-center mb-12 max-w-3xl mx-auto">
+                Docusign Agreement Desk operates in a dynamic market with strong competitors, including dedicated e-signature/DTM providers and comprehensive CLM suites from specialized vendors and major enterprise ISVs.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="competitor-card">
+                    <h3 class="text-2xl font-semibold section-title mb-2">Adobe Acrobat Sign</h3>
+                    <p class="section-subtitle text-sm mb-4">Primarily e-signature & PDF editing. AI Assistant for contract intelligence (summaries, key terms, comparison).</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm section-subtitle">
+                        <li><strong>Intake:</strong> Template creation.</li>
+                        <li><strong>Collaboration:</strong> Real-time editing, commenting, document comparison.</li>
+                        <li><strong>AI:</strong> AI Assistant for contract intelligence.</li>
+                        <li><strong>Integration:</strong> Salesforce, Microsoft, Oracle, Workday.</li>
+                        <li><strong>UX:</strong> Easy for e-signing, but signing process can be less intuitive. Lower mobile app ratings than Docusign.</li>
+                    </ul>
+                </div>
+                <div class="competitor-card">
+                    <h3 class="text-2xl font-semibold section-title mb-2">PandaDoc</h3>
+                    <p class="section-subtitle text-sm mb-4">Comprehensive document management (proposals, quotes, contracts). Strong e-signature & automation.</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm section-subtitle">
+                        <li><strong>Intake:</strong> Drag-and-drop editor, smart dynamic content, AI template builder.</li>
+                        <li><strong>Collaboration:</strong> Redlining, commenting, content locking.</li>
+                        <li><strong>AI:</strong> AI-powered template builder, contract intelligence for analysis.</li>
+                        <li><strong>Integration:</strong> HubSpot, Salesforce, Pipedrive, Stripe (fewer overall than Docusign).</li>
+                        <li><strong>UX:</strong> Generally intuitive, easy setup. Some issues with template organization, occasional glitches.</li>
+                    </ul>
+                </div>
+                <div class="competitor-card">
+                    <h3 class="text-2xl font-semibold section-title mb-2">ServiceNow Contract Management Pro</h3>
+                    <p class="section-subtitle text-sm mb-4">Comprehensive CLM deeply embedded in ServiceNow's AI Platform.</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm section-subtitle">
+                        <li><strong>Intake:</strong> MS Word Contract Authoring, templates.</li>
+                        <li><strong>Collaboration:</strong> Facilitates internal/third-party collaboration via cloud storage.</li>
+                        <li><strong>AI:</strong> Now Assist (assisted contract review, clause ID, metadata extraction), AI Agents for reminders.</li>
+                        <li><strong>Integration:</strong> Docusign, Adobe Sign, other ServiceNow products.</li>
+                        <li><strong>UX:</strong> Steep learning curve, complicated UI.</li>
+                    </ul>
+                </div>
+                <div class="competitor-card">
+                    <h3 class="text-2xl font-semibold section-title mb-2">Microsoft 365 (Syntex, SharePoint, Power Automate, Teams)</h3>
+                    <p class="section-subtitle text-sm mb-4">Leverages interconnected components for comprehensive contract management.</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm section-subtitle">
+                        <li><strong>Intake:</strong> Syntex for AI identification, classification, data extraction.</li>
+                        <li><strong>Collaboration:</strong> SharePoint lists, Teams channels for review.</li>
+                        <li><strong>AI:</strong> Syntex (AI classification, data extraction), CLM 365 (AI clause summaries).</li>
+                        <li><strong>Integration:</strong> Deep within Microsoft 365 ecosystem.</li>
+                        <li><strong>UX:</strong> Benefits from familiar Microsoft interfaces, aids adoption.</li>
+                    </ul>
+                </div>
+                <div class="competitor-card">
+                    <h3 class="text-2xl font-semibold section-title mb-2">Salesforce Vlocity CLM / Integrated CLM</h3>
+                    <p class="section-subtitle text-sm mb-4">Manages entire contract lifecycle, deeply integrated with Salesforce CRM.</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm section-subtitle">
+                        <li><strong>Intake:</strong> Reusable clauses/templates, conditional logic, automated generation from CRM data.</li>
+                        <li><strong>Collaboration:</strong> Customization, editing, version comparison, AI redlining.</li>
+                        <li><strong>AI:</strong> AI for generation, language detection, redlining, risk analysis, alternative language.</li>
+                        <li><strong>Integration:</strong> Native to Salesforce, Docusign.</li>
+                        <li><strong>UX:</strong> Highly customizable but complex, requires technical expertise.</li>
+                    </ul>
+                </div>
+                <div class="competitor-card">
+                    <h3 class="text-2xl font-semibold section-title mb-2">SAP Ariba Contracts</h3>
+                    <p class="section-subtitle text-sm mb-4">Cloud-based CLM with emphasis on spend management and procurement.</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm section-subtitle">
+                        <li><strong>Intake:</strong> Pre-approved templates, clause library.</li>
+                        <li><strong>Collaboration:</strong> Streamlines negotiations, collaboration in MS Word, Teams, Outlook.</li>
+                        <li><strong>AI:</strong> AI to optimize negotiations, risk management, obligation monitoring.</li>
+                        <li><strong>Integration:</strong> SAP Business Suite, MS Word, Teams, Outlook.</li>
+                        <li><strong>UX:</strong> User-friendly for specific tasks (RFPs/RFQs), but overall UI/UX could be improved.</li>
+                    </ul>
+                </div>
+                <div class="competitor-card">
+                    <h3 class="text-2xl font-semibold section-title mb-2">Conga CLM</h3>
+                    <p class="section-subtitle text-sm mb-4">Comprehensive, cloud-based solution to standardize, streamline, and automate CLM.</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm section-subtitle">
+                        <li><strong>Intake:</strong> Self-service creation, dynamic document assembly.</li>
+                        <li><strong>Collaboration:</strong> AI-accelerated review/negotiations, real-time editing, version control.</li>
+                        <li><strong>AI:</strong> AI for accelerating reviews and negotiations (fallback clauses).</li>
+                        <li><strong>Integration:</strong> Deep Salesforce integration, Docusign, Adobe Sign.</li>
+                        <li><strong>UX:</strong> Steep learning curve, difficult navigation, some clunky features.</li>
+                    </ul>
+                </div>
+                <div class="competitor-card">
+                    <h3 class="text-2xl font-semibold section-title mb-2">Ironclad CLM</h3>
+                    <p class="section-subtitle text-sm mb-4">CLM platform emphasizing automating contract workflows, especially for legal teams.</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm section-subtitle">
+                        <li><strong>Intake:</strong> No-code workflow designer, Smart Import for data ingestion.</li>
+                        <li><strong>Collaboration:</strong> Draft, edit, redline (Word/PDF), comments, notifications, negotiation guides.</li>
+                        <li><strong>AI:</strong> Smart Import/Detect (AI data extraction), AI Assist (drafting, editing, redlining).</li>
+                        <li><strong>Integration:</strong> Salesforce, HubSpot, Coupa, MS Teams, Slack, Docusign, Adobe Sign.</li>
+                        <li><strong>UX:</strong> Simplifies changes/comments, but steep learning curve, complex implementation, bugs.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparative-analysis" class="py-16 md:py-24 accent-bg-light">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold section-title text-center mb-4">Comparative Analysis: Docusign Agreement Desk vs. Competitors</h2>
+            <p class="text-lg section-subtitle text-center mb-12 max-w-3xl mx-auto">
+                A direct comparison of Docusign Agreement Desk's capabilities against key competitors across core functionalities, integration, and user experience.
+            </p>
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature Area</th>
+                            <th>Docusign Agreement Desk</th>
+                            <th>Adobe Acrobat Sign</th>
+                            <th>PandaDoc</th>
+                            <th>ServiceNow Contract Management Pro</th>
+                            <th>Microsoft 365 (Syntex, SharePoint, Power Automate, Teams)</th>
+                            <th>Salesforce Vlocity CLM / Integrated CLM</th>
+                            <th>SAP Ariba Contracts</th>
+                            <th>Conga CLM</th>
+                            <th>Ironclad CLM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Intake & Preparation</strong></td>
+                            <td>Simplified intake (email-to-task, forms), AI-suggested data, no-code templates</td>
+                            <td>Template creation</td>
+                            <td>Drag-and-drop editor, smart dynamic content, AI template builder</td>
+                            <td>MS Word authoring, templates</td>
+                            <td>Syntex for AI classification & data extraction</td>
+                            <td>Reusable templates, conditional logic, dynamic generation from CRM data</td>
+                            <td>Pre-approved templates & clause library, flexible initiation</td>
+                            <td>Self-service creation, dynamic assembly</td>
+                            <td>No-code workflow designer, Smart Import</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Collaboration & Negotiation</strong></td>
+                            <td>Centralized real-time redlining, commenting, version control, AI-Assisted Review redlines & context</td>
+                            <td>Real-time collaboration, editing, commenting, document comparison</td>
+                            <td>Redlining, content locking, workspaces</td>
+                            <td>Cloud storage for collaboration, clear negotiation tools</td>
+                            <td>Teams channels for collaborative review, CLM 365 AI summaries</td>
+                            <td>Customization, editing, version comparison, AI redlining, in-browser Word</td>
+                            <td>Collaboration in MS Word, Teams, Outlook</td>
+                            <td>Real-time editing/commenting (MS Word/Google Docs), version control, AI for negotiation</td>
+                            <td>Draft, edit, redline (Word/PDF), comments, notifications, negotiation guides</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI-Assisted Review & Automation</strong></td>
+                            <td>Docusign Iris, AI-Assisted Review (compliance, redline suggestions), Maestro (no-code workflows), AI Contract Agents</td>
+                            <td>AI Assistant (overview, key terms, summaries, version comparison)</td>
+                            <td>AI template builder, contract intelligence (analysis, insights), workflow automation</td>
+                            <td>Now Assist (review, clause ID, metadata extraction, AI agents for reminders), Aavenir Avy (simplifies legal terms, clause deviation)</td>
+                            <td>Syntex (AI classification, data extraction), CLM 365 (AI clause summaries), Power Automate</td>
+                            <td>AI for generation, language detection, redlining, risk analysis, alternative language</td>
+                            <td>Advanced AI for optimizing negotiations, risk management, obligation monitoring</td>
+                            <td>AI to speed up reviews & negotiations (fallback clauses)</td>
+                            <td>Smart Import/Detect (AI data extraction), AI Assist (drafting, editing, redlining)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Automated Approvals</strong></td>
+                            <td>Centralized dashboard, designated approvers, audit trail, real-time status</td>
+                            <td>Automated approval workflows for e-signatures</td>
+                            <td>Conditional logic for auto-approvals, specific approval sequences</td>
+                            <td>Streamlined signature processes, dynamic workflows</td>
+                            <td>Power Automate flows for guiding contracts through approval</td>
+                            <td>Routing & escalation paths, workflow automation for faster approvals</td>
+                            <td>Comprehensive workflow with audit trail</td>
+                            <td>Streamlined approval workflows</td>
+                            <td>Workflow Designer for automating approvals</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Integration Ecosystem</strong></td>
+                            <td>900+ pre-built (Salesforce, Microsoft, Google, HubSpot, Workday, Coupa)</td>
+                            <td>Salesforce, Microsoft, Oracle, Workday</td>
+                            <td>HubSpot, Pipedrive, QuickBooks, Zapier, Stripe (30+ total)</td>
+                            <td>Docusign, Adobe Sign, broad ServiceNow ecosystem</td>
+                            <td>Deep within Microsoft 365 (Teams, SharePoint, Outlook, Power Automate)</td>
+                            <td>Native to Salesforce, Docusign</td>
+                            <td>SAP Business Suite, Microsoft Word, Teams, Outlook, ICI</td>
+                            <td>Salesforce, Docusign, Adobe Sign</td>
+                            <td>Salesforce, HubSpot, Coupa, MS Teams, Slack, Docusign, Adobe Sign</td>
+                        </tr>
+                        <tr>
+                            <td><strong>User Experience (Pros/Cons)</strong></td>
+                            <td>Ease of use, intuitive, highly-rated mobile app</td>
+                            <td>Easy for e-signing, but signing process can be difficult; lower mobile app ratings</td>
+                            <td>Intuitive UI, drag-and-drop, easy setup; cumbersome template organization, occasional glitches</td>
+                            <td>Steep learning curve, complicated UI; strong ITSM features</td>
+                            <td>Leverages familiar Microsoft interfaces, aids adoption</td>
+                            <td>Highly customizable but complex; requires technical expertise</td>
+                            <td>User-friendly for specific tasks (RFPs/RFQs); UI/UX could be improved, integration challenges</td>
+                            <td>Steep learning curve, difficult navigation, some clunky features</td>
+                            <td>Keeps changes/comments in one place; steep learning curve, complex implementation, bugs</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="strategic-insights" class="py-16 md:py-24 accent-bg-default">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold section-title text-center mb-4">Strategic Insights & Recommendations</h2>
+            <p class="text-lg section-subtitle text-center mb-12 max-w-3xl mx-auto">
+                Understanding Docusign's competitive strengths, weaknesses, and the broader market dynamics is crucial for optimizing the success of Agreement Desk.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold section-title mb-3">Docusign's Strengths</h3>
+                    <ul class="list-disc list-inside space-y-2 section-subtitle">
+                        <li><strong>E-signature Market Leadership:</strong> Dominant position, vast existing user base, strong brand trust.</li>
+                        <li><strong>Focused Pre-signature Solution (DAD):</strong> Addresses critical pain points in agreement preparation, collaboration, and review.</li>
+                        <li><strong>Advanced, Purpose-Built AI:</strong> Docusign Iris offers specialized AI tailored for agreements, providing reliable extractions and risk detection.</li>
+                        <li><strong>Extensive Integration Ecosystem:</strong> Over 900 pre-built integrations ensure broad compatibility.</li>
+                        <li><strong>Strong User Experience:</strong> Generally praised for ease of use and highly-rated mobile application.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold section-title mb-3">Docusign's Weaknesses</h3>
+                    <ul class="list-disc list-inside space-y-2 section-subtitle">
+                        <li><strong>"New Kid on the Block" in CLM:</strong> Many competitors have established, comprehensive CLM solutions.</li>
+                        <li><strong>Perception as "E-signature Only":</strong> Requires significant market education to highlight broader IAM capabilities.</li>
+                        <li><strong>Potential for Feature Gaps in Broader CLM:</strong> Some competitors offer more extensive native document generation or deeper post-signature analytics.</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold section-title mb-3">Market Opportunities</h3>
+                    <ul class="list-disc list-inside space-y-2 section-subtitle">
+                        <li><strong>Upsell/Cross-sell to Existing Base:</strong> Introduce DAD to 1.7M+ existing e-signature customers.</li>
+                        <li><strong>Address Underserved Pre-signature Market:</strong> Target companies specifically struggling with agreement preparation and collaboration.</li>
+                        <li><strong>Lead with AI Innovation:</strong> Solidify Docusign's position as an AI leader in intelligent agreement management.</li>
+                        <li><strong>Strengthen ISV Partnerships:</strong> Deepen collaborations with major ISVs to remain the preferred "agreement layer."</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold section-title mb-3">Market Challenges</h3>
+                    <ul class="list-disc list-inside space-y-2 section-subtitle">
+                        <li><strong>Competition from Comprehensive CLM Suites:</strong> Major CLM players offer full-lifecycle solutions.</li>
+                        <li><strong>"Platform Lock-in" by ISVs:</strong> Customers may prioritize native CLM from their core enterprise vendors.</li>
+                        <li><strong>User Adoption of New Features:</strong> While Docusign is known for ease of use, the introduction of new, more complex CLM features like DAD requires effective change management and user education to ensure widespread adoption and realized value.</li>
+                        <li><strong>AI Feature Parity Race:</strong> Continuous innovation needed as competitors quickly match or surpass AI capabilities.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+                <h3 class="text-2xl font-semibold section-title mb-3">Recommendations for Success</h3>
+                <ul class="list-disc list-inside space-y-2 section-subtitle">
+                    <li><strong>Deepen DAD's AI Capabilities:</strong> Enhance AI-Assisted Review and expand generative AI functionalities.</li>
+                    <li><strong>Ensure Seamless IAM Integration:</strong> Foster deep, intuitive integration across all Docusign IAM products.</li>
+                    <li><strong>Strategic Expansion of Post-Signature Capabilities:</strong> Evaluate opportunities to enhance CLM offerings beyond pre-signature.</li>
+                    <li><strong>Emphasize "Intelligent Agreement Management":</strong> Shift market narrative from "e-signature company" to "IAM leader."</li>
+                    <li><strong>Highlight "Purpose-Built AI":</strong> Clearly articulate the distinct benefits of Docusign Iris's specialized AI.</li>
+                    <li><strong>Focus on Ease of Use for Complex Workflows:</strong> Market DAD's ability to simplify complex processes through intuitive interfaces.</li>
+                    <li><strong>Showcase Quantifiable ROI:</strong> Promote concrete case studies demonstrating time, cost, and risk reduction.</li>
+                    <li><strong>Strategic ISV Collaboration:</strong> Position Docusign as the best-in-class "agreement layer" within major ISV platforms.</li>
+                    <li><strong>Ecosystem Expansion:</strong> Continue to grow pre-built integrations to ensure broad compatibility.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="use-cases" class="py-16 md:py-24 accent-bg-light">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold section-title text-center mb-4">Agreement Desk in Action: Practical Use Cases</h2>
+            <p class="text-lg section-subtitle text-center mb-12 max-w-3xl mx-auto">
+                Discover how Agreement Desk can solve specific business challenges and deliver tangible benefits across various organizational functions.
+            </p>
+            <div class="space-y-12">
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold section-title mb-1">Streamlining Complex Multi-Party Negotiations</h3>
+                    <p class="text-sm accent-text mb-3">For Finance, Legal, Cross-border Teams</p>
+                    <p class="section-subtitle mb-4"><strong>Problem:</strong> Fragmented communication (multiple chats, emails) and lack of a central workspace for reviewing complex deals with many internal and external stakeholders, leading to delays and lost context.</p>
+                    <p class="section-subtitle mb-4"><strong>Solution with Agreement Desk:</strong> Centralized negotiation tools, version tracking, and a unified dashboard provide total visibility and consolidate all collaboration, ensuring everyone works from the most current version.</p>
+                    <p class="font-semibold accent-text">Anticipated Impact: Faster negotiation cycles, improved deal velocity, reduced errors, and retention of institutional knowledge. (e.g., KPC Private Funds saved 70% time on complex investment agreement processes with Docusign IAM).</p>
+                </div>
+
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold section-title mb-1">Accelerating Sales & Procurement Cycles</h3>
+                    <p class="text-sm accent-text mb-3">For Sales & Procurement Teams</p>
+                    <p class="section-subtitle mb-4"><strong>Problem:</strong> Bottlenecks from manual reviews, repetitive tasks, and numerous internal handoffs, leading to deferred revenue and deteriorated customer relationships.</p>
+                    <p class="section-subtitle mb-4"><strong>Solution with Agreement Desk:</strong> AI-Assisted Review against playbooks, no-code workflow automation (Maestro), and simplified intake with customizable forms drastically cut down manual effort and review times.</p>
+                    <p class="font-semibold accent-text">Anticipated Impact: Faster deal closures, improved operational efficiency, and enhanced customer satisfaction. (e.g., Docusign Legal saved up to 15 mins/NDA and 30-60 mins/MSA. Steve Madden managed a 30% contract volume spike with no added headcount using AI-Assisted Review).</p>
+                     <div class="mt-4">
+                        <p class="text-center section-subtitle text-sm mb-2">Illustrative Time Savings (Based on Docusign IAM Suite):</p>
+                        <div class="chart-container h-64 sm:h-72">
+                            <canvas id="salesProcurementChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold section-title mb-1">Enhancing Compliance & Auditability</h3>
+                    <p class="text-sm accent-text mb-3">For Regulated Industries & HR</p>
+                    <p class="section-subtitle mb-4"><strong>Problem:</strong> High risk of errors and non-compliance in sensitive, high-volume agreements due to manual processes, lack of standardization, and difficult audit trails.</p>
+                    <p class="section-subtitle mb-4"><strong>Solution with Agreement Desk:</strong> Customizable forms for standardized intake, robust approval workflows with clear audit trails, and integration with Agreement Preparation for data integrity ensure consistency and compliance.</p>
+                    <p class="font-semibold accent-text">Anticipated Impact: Reduced compliance risks, simplified audits, minimized human error, and increased efficiency in handling sensitive documents. (e.g., Valencia College streamlined 600+ faculty contracts; University of Iowa digitized donor experiences for speed and compliance with Docusign CLM).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="conclusion" class="py-16 md:py-24 accent-bg-default">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold section-title mb-4">The Future of Agreements is Intelligent</h2>
+            <p class="text-lg section-subtitle mb-8 max-w-3xl mx-auto">
+                Docusign Agreement Desk is more than a tool; it's a strategic enabler for transforming how businesses approach the entire agreement lifecycle. By centralizing operations, leveraging AI, and providing unparalleled visibility, it empowers organizations to move faster, reduce risk, and build stronger relationships.
+            </p>
+            <a href="https://www.docusign.com" target="_blank" class="primary-button inline-block px-8 py-3 rounded-lg font-semibold text-lg shadow-md">Learn More About Docusign IAM</a>
+        </div>
+    </section>
+
+    <footer class="text-center py-8 border-t accent-border">
+        <p class="text-sm section-subtitle">&copy; Docusign Agreement Desk Comprehensive Report. Based on publicly available information.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuButton.setAttribute('aria-expanded', !expanded);
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+        });
+
+        // Smooth scroll for nav links & active state
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+        const navbar = document.getElementById('navbar');
+        const navbarHeight = navbar.offsetHeight;
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                   mobileMenuButton.click();
+                }
+            });
+        });
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - navbarHeight - 50;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+
+        // Tab Functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.dataset.tab;
+
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                tabContents.forEach(content => {
+                    if (content.id === `${tabId}-content`) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Chart.js: Sales & Procurement Chart
+        const salesProcurementCtx = document.getElementById('salesProcurementChart');
+        if (salesProcurementCtx) {
+            new Chart(salesProcurementCtx.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Agreement Completion Time (Days)', 'Contract Execution Time (Days)'],
+                    datasets: [{
+                        label: 'Before Docusign IAM',
+                        data: [14, 20],
+                        backgroundColor: '#4C9AFF', /* Lightest Blue */
+                        borderColor: '#0065FF', /* Lighter Blue */
+                        borderWidth: 1
+                    }, {
+                        label: 'With Docusign IAM',
+                        data: [1.1, 0.0625],
+                        backgroundColor: '#0065FF', /* Lighter Blue */
+                        borderColor: '#0052CC', /* Primary Blue */
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Time (Days)', color: '#0747A6' },
+                            ticks: { color: '#0747A6' }
+                        },
+                        x: {
+                            ticks: { color: '#0747A6' }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { color: '#0747A6' }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    return Array.isArray(label) ? label.join(' ') : label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
