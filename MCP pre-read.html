@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP Interactive Pre-Read - Enhanced V4</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-button { transition: all 0.3s ease; }
+        .tab-button.active { border-color: #0284c7; background-color: #0284c7; color: white; }
+        .tab-button:not(.active):hover { border-color: #0369a1; background-color: #f0f9ff; }
+        .content-section { display: none; }
+        .content-section.active { display: block; }
+        .interactive-card { transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
+        .interactive-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .accordion-content.open { max-height: 1000px; /* Adjust as needed, ensure it's large enough for content */ }
+        .sticky-nav { position: -webkit-sticky; position: sticky; top: 0; z-index: 50; background-color: rgba(248, 250, 252, 0.95); backdrop-filter: blur(8px); }
+        .logo-img { max-height: 48px; width: auto; display: block; margin: auto; } /* For company logos */
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-sky-700">Model Context Protocol: Interactive Deep Dive</h1>
+            <p class="text-slate-600 mt-2 text-lg">Unlocking Smarter AI Integration</p>
+        </header>
+
+        <nav class="sticky-nav mb-8 py-3 shadow-md rounded-lg overflow-x-auto">
+            <div class="flex space-x-2 md:space-x-4 justify-center px-2">
+                <button data-tab="what-is-mcp" class="tab-button active text-sm md:text-base whitespace-nowrap font-medium py-2 px-3 md:px-4 border-b-2 border-transparent rounded-md">What is MCP?</button>
+                <button data-tab="architecture" class="tab-button text-sm md:text-base whitespace-nowrap font-medium py-2 px-3 md:px-4 border-b-2 border-transparent rounded-md">Architecture</button>
+                <button data-tab="impact" class="tab-button text-sm md:text-base whitespace-nowrap font-medium py-2 px-3 md:px-4 border-b-2 border-transparent rounded-md">Impact & Relevance</button>
+                <button data-tab="mcp-vs-apis" class="tab-button text-sm md:text-base whitespace-nowrap font-medium py-2 px-3 md:px-4 border-b-2 border-transparent rounded-md">MCP vs. APIs</button>
+                <button data-tab="ecosystem" class="tab-button text-sm md:text-base whitespace-nowrap font-medium py-2 px-3 md:px-4 border-b-2 border-transparent rounded-md">Ecosystem</button>
+                <button data-tab="docusign" class="tab-button text-sm md:text-base whitespace-nowrap font-medium py-2 px-3 md:px-4 border-b-2 border-transparent rounded-md">Docusign & MCP</button>
+                <button data-tab="docusign-partners" class="tab-button text-sm md:text-base whitespace-nowrap font-medium py-2 px-3 md:px-4 border-b-2 border-transparent rounded-md">Docusign AI Partners</button>
+            </div>
+        </nav>
+
+        <main>
+            <section id="what-is-mcp" class="content-section active">
+                <h2 class="text-3xl font-semibold text-sky-600 mb-6">What is MCP? Core Concepts & Primitives</h2>
+                 <div class="space-y-6 bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-lg leading-relaxed font-medium text-slate-700">Welcome to your interactive pre-read on the Model Context Protocol (MCP)! This session explores how MCP is the game-changer for connecting AI to the real world, cutting through complexity, and empowering truly intelligent applications. Our team's development of an MCP server for Docusign Navigator APIs is a prime example of this innovation in action.</p>
+                    
+                    <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-md">
+                        <h3 class="text-xl font-semibold text-amber-700 mb-2">The "M x N" AI Integration Bottleneck: Solved by MCP</h3>
+                        <p class="text-amber-600">Imagine connecting <strong id="m-models">5</strong> AI models to <strong id="n-tools">10</strong> distinct tools or data sources. This currently demands <strong id="mn-integrations" class="text-xl">50</strong> unique, custom integrations. This is the "M x N problem" — a scalability nightmare for AI adoption.</p>
+                        <div class="mt-3 flex space-x-4 items-center">
+                            <div>
+                                <label for="m-slider" class="block text-sm font-medium text-amber-700">Models (M): <span id="m-value">5</span></label>
+                                <input type="range" id="m-slider" min="1" max="20" value="5" class="w-full h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                            <div>
+                                <label for="n-slider" class="block text-sm font-medium text-amber-700">Tools (N): <span id="n-value">10</span></label>
+                                <input type="range" id="n-slider" min="1" max="50" value="10" class="w-full h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer">
+                            </div>
+                        </div>
+                        <p class="text-amber-600 mt-3 font-semibold">With MCP, this chaotic "M x N" problem transforms into a streamlined "M + N" integration, requiring only <strong id="mn-integrations-mcp" class="text-xl">15</strong> connections. This drastically reduces effort and accelerates development.</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-2xl font-semibold text-sky-600 mb-4">Why MCP is the Answer Now</h3>
+                        <p class="mb-4 text-slate-700">As AI becomes more sophisticated, especially Large Language Models (LLMs), its true power is unlocked when it can access and use real-world, dynamic information and tools. MCP, introduced by Anthropic, provides this critical bridge by:</p>
+                        <ul class="list-disc list-inside text-slate-700 space-y-2">
+                            <li><strong>Standardizing AI's External Connections:</strong> Acting like a universal "AI USB port," it offers a consistent way for AI to plug into any data source or tool.</li>
+                            <li><strong>Enabling True Context-Aware AI:</strong> AI models get precisely the information they need, when they need it, from external systems.</li>
+                            <li><strong>Powering Agentic AI:</strong> It's the backbone for AI agents that can autonomously discover, understand, and use tools to achieve complex goals.</li>
+                        </ul>
+                        <p class="text-slate-700 mt-4 leading-relaxed">This pre-read will dive into MCP's core concepts, architecture, and how it's shaping the future of AI-driven solutions, including our own innovative work with Docusign Navigator.</p>
+                </div>
+
+                    <div class="p-4 bg-sky-50 rounded-lg border border-sky-200">
+                        <h3 class="text-xl font-semibold text-sky-700 mb-2">The "AI USB Port" Analogy</h3>
+                        <div class="flex items-center space-x-4">
+                            <div class="text-5xl text-sky-500">🔌</div>
+                            <p class="text-slate-700">Just as a USB port allows your computer to connect to countless peripherals (keyboards, mice, printers) using a single standard, MCP provides a universal connection point for AI. Any compliant AI application can "plug into" various external systems through a consistent interface, eliminating the need for custom adapters for each new connection.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <h3 class="text-2xl font-semibold text-sky-600 mb-4">MCP Primitives: AI's Building Blocks for External Interaction</h3>
+                        <p class="mb-4 text-slate-700">MCP defines three fundamental concepts that structure how AI interacts with external capabilities and data. Think of them as the standardized vocabulary and actions an AI uses to understand and leverage the world outside its core model. Click each primitive to reveal its definition and example.</p>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="accordion-item interactive-card bg-white rounded-lg border border-slate-200 shadow overflow-hidden">
+                                <button class="accordion-button w-full text-left p-4 focus:outline-none flex justify-between items-center">
+                                    <h4 class="font-semibold text-lg text-sky-700">🔧 Tools</h4>
+                                    <span class="text-slate-500 text-2xl">−</span>
+                                </button>
+                                <div class="accordion-content open p-4 border-t border-slate-200 bg-slate-50">
+                                    <p class="text-sm text-slate-600 mb-2"><strong>Definition:</strong> Executable functions or actions an AI can invoke to perform tasks or retrieve specific information from external systems (e.g., searching a database, sending an email, creating a document).</p>
+                                    <p class="text-sm text-slate-600"><strong>Analogy:</strong> Like a specific "App" on your phone for a particular task (e.g., a "Weather App" that fetches current weather data).</p>
+                                    <p class="text-sm text-slate-600 mt-2"><strong>Example:</strong> A `search_docusign_agreements` tool that takes a query and returns matching agreement summaries.</p>
+                                </div>
+                            </div>
+                             <div class="accordion-item interactive-card bg-white rounded-lg border border-slate-200 shadow overflow-hidden">
+                                <button class="accordion-button w-full text-left p-4 focus:outline-none flex justify-between items-center">
+                                    <h4 class="font-semibold text-lg text-sky-700">📄 Resources</h4>
+                                     <span class="text-slate-500 text-2xl">−</span>
+                                </button>
+                                <div class="accordion-content open p-4 border-t border-slate-200 bg-slate-50">
+                                    <p class="text-sm text-slate-600 mb-2"><strong>Definition:</strong> Structured streams of data that an AI client can read and interpret to gain context or specific details (e.g., the content of a document, a list of database records, a detailed API response).</p>
+                                    <p class="text-sm text-slate-600"><strong>Analogy:</strong> Like a "Document" or "File" on your computer that contains specific information for a task.</p>
+                                    <p class="text-sm text-slate-600 mt-2"><strong>Example:</strong> `docusign-navigator:///agreements/contract123` providing the AI-extracted insights (metadata) for a specific contract.</p>
+                                </div>
+                            </div>
+                             <div class="accordion-item interactive-card bg-white rounded-lg border border-slate-200 shadow overflow-hidden">
+                                <button class="accordion-button w-full text-left p-4 focus:outline-none flex justify-between items-center">
+                                    <h4 class="font-semibold text-lg text-sky-700">📝 Prompts</h4>
+                                    <span class="text-slate-500 text-2xl">−</span>
+                                </button>
+                                <div class="accordion-content open p-4 border-t border-slate-200 bg-slate-50">
+                                    <p class="text-sm text-slate-600 mb-2"><strong>Definition:</strong> Reusable templates for instructions that guide the AI model's behavior, style, or workflow for common or complex tasks, ensuring consistent and targeted responses.</p>
+                                    <p class="text-sm text-slate-600"><strong>Analogy:</strong> Like a "Template" or "Script" you follow for a specific type of conversation or report, ensuring consistency.</p>
+                                    <p class="text-sm text-slate-600 mt-2"><strong>Example:</strong> A prompt template for "Summarize the key financial terms from the provided agreement resource, highlighting any deviations from standard clauses."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="architecture" class="content-section">
+                <h2 class="text-3xl font-semibold text-sky-600 mb-6">MCP Architecture Decoded: Hosts, Clients, Servers</h2>
+                <div class="space-y-6 bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-lg leading-relaxed">MCP employs a robust client-server architecture, similar to how many modern software systems communicate. This design ensures modularity, scalability, and enhanced security for AI interactions. Let's break down the roles of each component using a simple office analogy.</p>
+                    
+                    <div class="mt-6 p-6 border border-sky-200 rounded-lg bg-sky-50">
+                        <h3 class="text-xl font-semibold text-sky-700 mb-4 text-center">Interactive MCP Flow Diagram: The Office Analogy</h3>
+                        <p class="text-sm text-center text-slate-600 mb-4">Click on each office role to understand its function in the MCP workflow.</p>
+                        <div class="flex flex-col md:flex-row items-center justify-around space-y-4 md:space-y-0 md:space-x-4">
+                            <div data-component="host" class="mcp-component text-center p-3 border-2 border-sky-500 rounded-lg bg-white shadow-md cursor-pointer hover:bg-sky-100 w-full md:w-1/4">
+                                <div class="text-4xl">🖥️</div>
+                                <div class="font-semibold mt-1">Host (You/AI App)</div>
+                                <div class="text-xs text-slate-500">e.g., Claude, Copilot Studio</div>
+                            </div>
+                            <div class="text-2xl font-bold text-sky-600 hidden md:block transform md:rotate-0 rotate-90">→</div>
+                             <div data-component="client" class="mcp-component text-center p-3 border-2 border-sky-500 rounded-lg bg-white shadow-md cursor-pointer hover:bg-sky-100 w-full md:w-1/4">
+                                <div class="text-4xl">🧑‍💼</div>
+                                <div class="font-semibold mt-1">Client (Your Assistant)</div>
+                                 <div class="text-xs text-slate-500">e.g., MCP SDK</div>
+                            </div>
+                            <div class="text-2xl font-bold text-sky-600 hidden md:block transform md:rotate-0 rotate-90">→</div>
+                            <div data-component="server" class="mcp-component text-center p-3 border-2 border-sky-500 rounded-lg bg-white shadow-md cursor-pointer hover:bg-sky-100 w-full md:w-1/4">
+                                <div class="text-4xl">🏢</div>
+                                <div class="font-semibold mt-1">MCP Server (Dept. Head)</div>
+                                <div class="text-xs text-slate-500">e.g., Docusign, GitHub</div>
+                            </div>
+                             <div class="text-2xl font-bold text-sky-600 hidden md:block transform md:rotate-0 rotate-90">↔️</div>
+                            <div data-component="external" class="mcp-component text-center p-3 border-2 border-dashed border-slate-400 rounded-lg bg-slate-50 shadow-md cursor-pointer hover:bg-slate-100 w-full md:w-1/4">
+                                <div class="text-4xl">☁️</div>
+                                <div class="font-semibold mt-1">External Systems (Specialists)</div>
+                                <div class="text-xs text-slate-500">e.g., Salesforce, Slack</div>
+                            </div>
+                        </div>
+                        <div id="mcp-component-description" class="mt-6 p-4 bg-white border border-slate-200 rounded-lg text-center text-slate-700 min-h-[60px] flex items-center justify-center">
+                            <p>Click on an office role (Host, Client, Server, External Systems) to see its description.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 bg-amber-50 rounded-lg border border-amber-200">
+                        <h3 class="text-xl font-semibold text-amber-700 mb-2">Communication Protocols: STDIO vs. HTTP+SSE</h3>
+                        <p class="text-slate-700">MCP leverages two primary communication methods to ensure flexibility across various environments:</p>
+                        <ul class="list-disc list-inside text-slate-600 mt-2 space-y-1">
+                            <li><strong>STDIO (Standard I/O):</strong> Ideal for local, desktop environments (e.g., an AI application running directly on your computer). It's simple, secure, and offers low-latency communication.</li>
+                            <li><strong>HTTP + SSE (Server-Sent Events):</strong> Used for web-based, cloud, or remote environments. This method supports persistent, long-lived connections for real-time data streaming and asynchronous updates, crucial for dynamic AI agents.</li>
+                        </ul>
+                        <p class="text-slate-700 mt-3">This dual approach ensures MCP is versatile, supporting everything from local AI assistants to complex, distributed cloud-based agentic workflows.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="impact" class="content-section">
+                <h2 class="text-3xl font-semibold text-sky-600 mb-6">MCP's Impact & Relevance: Fueling the AI Revolution</h2>
+                <div class="space-y-6 bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-lg leading-relaxed">MCP is more than just a technical specification; it's a foundational standard enabling the next generation of AI. It directly tackles the complexity of connecting sophisticated AI models to the vast, ever-changing real world of data and applications.</p>
+                    
+                    <div>
+                        <h3 class="text-2xl font-semibold text-sky-600 mb-4">Key Advantages of Adopting MCP</h3>
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 shadow">
+                                <div class="text-4xl text-blue-500 mb-2">⚡</div>
+                                <h4 class="font-semibold text-lg text-blue-700">Accelerated Development</h4>
+                                <p class="text-sm text-slate-600">Standardized interfaces drastically cut down custom integration time for AI systems, making development faster and more efficient.</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg border border-green-200 shadow">
+                                <div class="text-4xl text-green-500 mb-2">🧠</div>
+                                <h4 class="font-semibold text-lg text-green-700">Enhanced Context-Awareness</h4>
+                                <p class="text-sm text-slate-600">AI gains real-time, relevant, and structured access to external data, leading to significantly more accurate and useful outputs.</p>
+                            </div>
+                            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200 shadow">
+                                <div class="text-4xl text-purple-500 mb-2">🔒</div>
+                                <h4 class="font-semibold text-lg text-purple-700">Improved Security & Trust</h4>
+                                <p class="text-sm text-slate-600">A local-first design and explicit user permissions offer granular control over AI actions and data access.</p>
+                            </div>
+                             <div class="bg-orange-50 p-4 rounded-lg border border-orange-200 shadow">
+                                <div class="text-4xl text-orange-500 mb-2">🔗</div>
+                                <h4 class="font-semibold text-lg text-orange-700">Dynamic Tool Orchestration</h4>
+                                <p class="text-sm text-slate-600">AI agents can discover and adaptively use tools at runtime, enabling complex and flexible multi-step workflows.</p>
+                            </div>
+                            <div class="bg-teal-50 p-4 rounded-lg border border-teal-200 shadow">
+                                <div class="text-4xl text-teal-500 mb-2">🔄</div>
+                                <h4 class="font-semibold text-lg text-teal-700">Cross-Platform Compatibility</h4>
+                                <p class="text-sm text-slate-600">MCP works seamlessly across various operating systems and deployment environments, from local machines to cloud infrastructures.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="text-2xl font-semibold text-sky-600 mb-4">Driving the Agentic AI Future</h3>
+                        <p class="text-slate-700 leading-relaxed">MCP is foundational for the emerging era of "agentic AI" – systems that can autonomously understand goals, plan actions, utilize tools, and execute tasks in dynamic, real-world environments. By providing a unified way for AI to interact with external systems, MCP significantly reduces the complexity and fragility of building such intelligent, autonomous agents. It is rapidly becoming the **de facto standard** for powering sophisticated AI workflows.</p>
+                    </div>
+
+                    <div class="mt-8 p-4 bg-amber-50 rounded-lg border border-amber-200">
+                        <h3 class="text-xl font-semibold text-amber-700 mb-2">Community Growth & Security Reminders</h3>
+                        <p class="text-amber-700">The developer community is actively contributing to MCP, with SDKs and integrations across various languages, including a significant presence in the Java ecosystem. A public directory lists over **5,000 active MCP servers** as of May 2025, underscoring its real-world utility and strong network effect.</p>
+                        <p class="text-amber-700 mt-2">Remember, while MCP enhances security with its local-first design and explicit permissions, vigilance against prompt injection, careful permission management, and avoiding untrusted servers remains crucial for robust AI system security.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mcp-vs-apis" class="content-section">
+                <h2 class="text-3xl font-semibold text-sky-600 mb-6">MCP vs. Traditional APIs: A Crucial Distinction</h2>
+                <div class="space-y-6 bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-lg leading-relaxed">It's vital to clarify that **MCP does not replace APIs; it consumes and orchestrates them.** Think of it this way: Traditional APIs are like individual ingredients (e.g., a recipe for baking a cake). MCP is the standardized chef's guide and process that knows how to dynamically select, combine, and use those ingredients to achieve a complex, evolving AI goal. MCP adds a layer of intelligence and standardization *on top* of existing APIs.</p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-sky-600 text-white">
+                                    <th class="p-3 border border-sky-700">Feature</th>
+                                    <th class="p-3 border border-sky-700">Traditional APIs (e.g., REST, GraphQL)</th>
+                                    <th class="p-3 border border-sky-700">Model Context Protocol (MCP)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-slate-50 hover:bg-slate-100 transition-colors duration-200" data-detail="Primary Purpose">
+                                    <td class="p-3 border border-slate-200 font-semibold">Primary Purpose</td>
+                                    <td class="p-3 border border-slate-200">Deterministic machine-to-machine communication; explicit function calls for known operations.</td>
+                                    <td class="p-3 border border-slate-200">Standardized context exchange for AI models; dynamic tool/resource access and orchestration.</td>
+                                </tr>
+                                <tr class="bg-white hover:bg-slate-100 transition-colors duration-200" data-detail="Interface Definition">
+                                    <td class="p-3 border border-slate-200 font-semibold">Interface Definition</td>
+                                    <td class="p-3 border border-slate-200">Schema defined by provider (e.g., OpenAPI/Swagger); often static and predefined.</td>
+                                    <td class="p-3 border border-slate-200">Self-describing tools and resources in JSON; supports dynamic discovery at runtime.</td>
+                                </tr>
+                                <tr class="bg-slate-50 hover:bg-slate-100 transition-colors duration-200" data-detail="Context Handling">
+                                    <td class="p-3 border border-slate-200 font-semibold">Context Handling</td>
+                                    <td class="p-3 border border-slate-200">Limited; context must be explicitly passed in each request, often as parameters.</td>
+                                    <td class="p-3 border border-slate-200">Core feature; structured primitives (Tools, Resources, Prompts) enable rich, evolving context for AI.</td>
+                                </tr>
+                                <tr class="bg-white hover:bg-slate-100 transition-colors duration-200" data-detail="Tool Discovery">
+                                    <td class="p-3 border border-slate-200 font-semibold">Tool Discovery</td>
+                                    <td class="p-3 border border-slate-200">Manual integration; developers must know available endpoints beforehand.</td>
+                                    <td class="p-3 border border-slate-200">Dynamic runtime discovery; AI can query available tools and decide how to use them contextually.</td>
+                                </tr>
+                                <tr class="bg-slate-50 hover:bg-slate-100 transition-colors duration-200" data-detail="Primary Consumer">
+                                    <td class="p-3 border border-slate-200 font-semibold">Primary Consumer</td>
+                                    <td class="p-3 border border-slate-200">Other software applications, frontends, or backend services.</td>
+                                    <td class="p-3 border border-slate-200">AI models and AI agents.</td>
+                                </tr>
+                                <tr class="bg-white hover:bg-slate-100 transition-colors duration-200" data-detail="Integration Effort">
+                                    <td class="p-3 border border-slate-200 font-semibold">Integration Effort</td>
+                                    <td class="p-3 border border-slate-200">Significant custom coding for each new API integration.</td>
+                                    <td class="p-3 border border-slate-200">Reduced; a single MCP client can integrate with many diverse MCP servers.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="comparison-detail" class="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-lg text-slate-700">
+                        <p>Hover over a row in the table above to highlight key differences between APIs and MCP.</p>
+                    </div>
+
+                    <div class="mt-8 grid md:grid-cols-2 gap-6">
+                        <div class="bg-sky-50 p-5 rounded-lg border border-sky-200 shadow">
+                            <h3 class="text-xl font-semibold text-sky-700 mb-3">When to Use Traditional APIs</h3>
+                            <ul class="list-disc list-inside text-slate-700 space-y-2">
+                                <li>For direct, specific machine-to-machine communications.</li>
+                                <li>Building web services or mobile application backends.</li>
+                                <li>When integrations are static and don't require dynamic AI adaptation.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-sky-50 p-5 rounded-lg border border-sky-200 shadow">
+                            <h3 class="text-xl font-semibold text-sky-700 mb-3">When to Use MCP</h3>
+                            <ul class="list-disc list-inside text-slate-700 space-y-2">
+                                <li>To enable AI models (especially LLMs) to dynamically interact with external tools and data.</li>
+                                <li>For developing "agentic AI" workflows that need dynamic tool use and context awareness.</li>
+                                <li>When standardizing AI's access to diverse, evolving external capabilities is paramount.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ecosystem" class="content-section">
+                <h2 class="text-3xl font-semibold text-sky-600 mb-6">The Expanding MCP Ecosystem & AI Landscape</h2>
+                <div class="space-y-6 bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-lg leading-relaxed">The MCP ecosystem is rapidly expanding, with major players and the broader AI community recognizing its transformative potential. This growing adoption is fostering a powerful network effect, solidifying MCP's role as a vital standard for AI integration.</p>
+                    
+                    <div>
+                        <h3 class="text-2xl font-semibold text-sky-600 mb-4">Key Players & Adopters (MCP Servers & Support)</h3>
+                        <p class="mb-4 text-slate-700">Several leading technology companies are actively building MCP servers or supporting the protocol, driving its widespread adoption:</p>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <div class="flex flex-col items-center p-4 bg-white border border-slate-200 rounded-lg shadow">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Anthropic_logo.png" alt="Anthropic Logo" class="logo-img mb-2" onerror="this.onerror=null;this.src='https://placehold.co/48x48/F0F9FF/0284C7?text=A';">
+                                <h4 class="font-semibold text-lg text-slate-800 text-center">Anthropic</h4>
+                                <p class="text-xs text-slate-500 text-center">(Originator & Reference Servers)</p>
+                            </div>
+                            <div class="flex flex-col items-center p-4 bg-white border border-slate-200 rounded-lg shadow">
+                                <div class="text-5xl mb-2">🤖</div>
+                                <h4 class="font-semibold text-lg text-slate-800 text-center">OpenAI</h4>
+                                <p class="text-xs text-slate-500 text-center">(Adopted across products)</p>
+                            </div>
+                            <div class="flex flex-col items-center p-4 bg-white border border-slate-200 rounded-lg shadow">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Google_DeepMind_logo.svg/512px-Google_DeepMind_logo.svg.png" alt="Google DeepMind Logo" class="logo-img mb-2" onerror="this.onerror=null;this.src='https://placehold.co/48x48/F0F9FF/0284C7?text=GD';">
+                                <h4 class="font-semibold text-lg text-slate-800 text-center">Google DeepMind</h4>
+                                <p class="text-xs text-slate-500 text-center">(Supporting Gemini models)</p>
+                            </div>
+                            <div class="flex flex-col items-center p-4 bg-white border border-slate-200 rounded-lg shadow">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png" alt="GitHub Logo" class="logo-img mb-2" onerror="this.onerror=null;this.src='https://placehold.co/48x48/F0F9FF/0284C7?text=GH';">
+                                <h4 class="font-semibold text-lg text-slate-800 text-center">GitHub</h4>
+                                <p class="text-xs text-slate-500 text-center">(VS Code MCP Server)</p>
+                            </div>
+                            <div class="flex flex-col items-center p-4 bg-white border border-slate-200 rounded-lg shadow">
+                                <div class="text-5xl mb-2">💲</div>
+                                <h4 class="font-semibold text-lg text-slate-800 text-center">Block</h4>
+                                <p class="text-xs text-slate-500 text-center">(Internal AI assistants)</p>
+                            </div>
+                            <div class="flex flex-col items-center p-4 bg-white border border-slate-200 rounded-lg shadow">
+                                <div class="text-5xl mb-2">🚀</div>
+                                <h4 class="font-semibold text-lg text-slate-800 text-center">Replit</h4>
+                                <p class="text-xs text-slate-500 text-center">(Developer tools)</p>
+                            </div>
+                             <div class="flex flex-col items-center p-4 bg-white border border-slate-200 rounded-lg shadow">
+                                <div class="text-5xl mb-2">🔎</div>
+                                <h4 class="font-semibold text-lg text-slate-800 text-center">Sourcegraph</h4>
+                                <p class="text-xs text-slate-500 text-center">(Code intelligence)</p>
+                            </div>
+                             <div class="flex flex-col items-center p-4 bg-white border border-slate-200 rounded-lg shadow">
+                                <div class="text-5xl mb-2">🏗️</div>
+                                <h4 class="font-semibold text-lg text-slate-800 text-center">HashiCorp</h4>
+                                <p class="text-xs text-slate-500 text-center">(Terraform MCP Server)</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-500 mt-4">Note: For some companies, direct, stable public CDN links for their logos were not available or hotlinking is restricted by their brand guidelines. In such cases, Unicode characters or plain text are used as a fallback to maintain compliance and accessibility. An `onerror` attribute is included for image fallbacks.</p>
+                    </div>
+                    
+                    <div class="mt-8 p-4 bg-sky-50 rounded-lg border border-sky-200">
+                        <h3 class="text-2xl font-semibold text-sky-600 mb-4">Major AI Platform Compatibility</h3>
+                        <p class="text-slate-700 mb-3">MCP is being widely adopted and directly integrated into leading AI platforms, ensuring seamless interoperability:</p>
+                        <ul class="list-disc list-inside text-slate-700 space-y-2">
+                            <li><strong>Microsoft Copilot Studio:</strong> MCP integration is generally available, allowing users to effortlessly connect external data and tools, empowering AI apps and agents with real-time capabilities.</li>
+                            <li><strong>Google Gemini:</strong> Google explicitly uses MCP to enable Gemini and Gemma models to access external tools and data, facilitating complex tasks like multilingual chatbots and dynamic data analysis.</li>
+                            <li><strong>Anthropic Claude:</strong> Claude Desktop and other applications can connect directly to MCP servers, enabling Claude to discover and utilize external tools (e.g., GitHub, Slack) to perform actions and access information.</li>
+                        </ul>
+                        <p class="text-slate-700 mt-3">This strong support from major AI model developers highlights MCP's growing status as a critical standard for AI integration.</p>
+                    </div>
+
+                    <div class="mt-8">
+                        <h3 class="text-2xl font-semibold text-sky-600 mb-4">Other Agent Protocols in the Landscape</h3>
+                        <p class="text-slate-700 mb-4">While MCP focuses on connecting individual AI models to tools and data, other emerging protocols address different aspects of the broader agentic AI ecosystem:</p>
+                        <ul class="list-disc list-inside text-slate-700 space-y-2">
+                            <li><strong>Google's A2A (Agent-to-Agent Communication Protocol):</strong> Primarily designed for asynchronous, secure communication *between* AI agents, focusing on collaboration and task delegation rather than external tool integration.</li>
+                            <li><strong>ANP (Agent Network Protocol):</strong> A decentralized, peer-to-peer protocol focusing on agent identity, trust, and negotiation for open, federated agent systems.</li>
+                            <li><strong>ACP (Agent Communication Protocol - IBM / BeeAI):</strong> A structured, LLM-native messaging framework for multi-agent systems, useful for scaling agents across enterprise apps and edge devices.</li>
+                            <li><strong>AGORA Protocol:</strong> A meta-protocol that allows agents to choose optimal collaboration methods (structured calls, natural language, code) based on context, built for flexible, hybrid agent networks.</li>
+                        </ul>
+                        <p class="text-slate-700 mt-3">These protocols often complement MCP, with MCP providing the foundation for individual agent capabilities while others enable inter-agent coordination and decentralized networks.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="docusign" class="content-section">
+                <h2 class="text-3xl font-semibold text-sky-600 mb-6">Docusign Navigator + MCP = Smarter Agreements</h2>
+                <div class="space-y-6 bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-lg leading-relaxed">Our team has been actively leveraging MCP to dramatically enhance Docusign's capabilities. We've developed an MCP server that intelligently wraps the Docusign Navigator APIs, bringing rich, structured agreement intelligence directly to AI models. This section showcases how we're making Docusign data more intelligent, accessible, and actionable for AI.</p>
+                    
+                    <div class="p-4 bg-sky-50 rounded-lg border border-sky-200">
+                        <h3 class="text-xl font-semibold text-sky-700 mb-2">Docusign Navigator API: Agreement Intelligence for AI</h3>
+                        <p class="text-slate-700">The Docusign Navigator API provides advanced, AI-extracted insights and comprehensive metadata from agreements. It understands the intricate details of legal and business documents, pinpointing key clauses, identifying parties, recognizing obligations, and more. This highly structured metadata is specifically designed to provide rich, granular context for Large Language Model applications, transforming previously unstructured documents into instantly queryable and actionable data points.</p>
+                        <p class="text-slate-700 mt-2">Crucially, Docusign Navigator is already engineered for integration with agentic AI workflows, demonstrating compatibility with tools like Agentforce to equip AI agents with a vast repository of AI-powered agreement data. This inherent design makes it an exceptional candidate for seamless MCP integration, enabling deeper, more dynamic AI interactions.</p>
+                    </div>
+
+                    <div class="mt-8">
+                        <h3 class="text-2xl font-semibold text-sky-600 mb-4">MCP Server Proof of Concept with Navigator APIs</h3>
+                        <p class="mb-4 text-slate-700">We've built an MCP server that serves as an intelligent bridge, exposing Docusign Navigator's powerful capabilities as MCP Tools and Resources. This innovative server allows AI models and agents to:</p>
+                        <ul class="list-disc list-inside text-slate-700 space-y-2">
+                            <li>**Dynamically Discover Docusign Tools:** AI can now find and use Docusign-specific functions (e.g., `search_agreements_by_keyword`, `get_contract_clause_details`) at runtime.</li>
+                            <li>**Access Structured Agreement Data as Resources:** Structured insights from agreements become directly consumable resources (e.g., `docusign-navigator:///agreement_insights/invoice_2024_terms`) by AI models.</li>
+                            <li>**Utilize Docusign Context Seamlessly:** AI workflows can effortlessly integrate and leverage granular Docusign agreement data for enhanced decision-making and task execution.</li>
+                        </ul>
+                        <div class="grid md:grid-cols-3 gap-4 mt-6">
+                            <div class="flex flex-col items-center p-4 bg-white border border-blue-200 rounded-lg shadow">
+                                <div class="text-4xl text-blue-500 mb-2">🚀</div>
+                                <h4 class="font-semibold text-lg text-blue-700 text-center">Simplified Integration</h4>
+                                <p class="text-sm text-slate-600 text-center">AI applications integrate once with our MCP server, eliminating the need for individual Navigator API integrations.</p>
+                            </div>
+                            <div class="flex flex-col items-center p-4 bg-white border border-green-200 rounded-lg shadow">
+                                <div class="text-4xl text-green-500 mb-2">💡</div>
+                                <h4 class="font-semibold text-lg text-green-700 text-center">Enhanced Context</h4>
+                                <p class="text-sm text-slate-600 text-center">AI models receive deeply relevant, structured context directly from Docusign agreements, improving accuracy.</p>
+                            </div>
+                            <div class="flex flex-col items-center p-4 bg-white border border-purple-200 rounded-lg shadow">
+                                <div class="text-4xl text-purple-500 mb-2">⏱️</div>
+                                <h4 class="font-semibold text-lg text-purple-700 text-center">Faster Iteration</h4>
+                                <p class="text-sm text-slate-600 text-center">Enables rapid prototyping and deployment of AI features leveraging Docusign data and capabilities.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <h3 class="text-2xl font-semibold text-sky-600 mb-4">Practical Applications & Strategic Impact (New Use Cases!)</h3>
+                        <p class="mb-4 text-slate-700">Our MCP server for Docusign Navigator unlocks a wide array of powerful new applications and strategic advantages:</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 shadow">
+                                <h4 class="font-semibold text-lg text-slate-800 mb-2">Automated Compliance Checks</h4>
+                                <p class="text-sm text-slate-600">AI can automatically review agreements against compliance guidelines by accessing structured clauses via MCP tools.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 shadow">
+                                <h4 class="font-semibold text-lg text-slate-800 mb-2">Intelligent Contract Lifecycle Management (CLM)</h4>
+                                <p class="text-sm text-slate-600">AI agents can monitor agreement terms, flag upcoming deadlines, and even suggest amendments based on real-time data.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 shadow">
+                                <h4 class="font-semibold text-lg text-slate-800 mb-2">Enhanced Customer Support Bots</h4>
+                                <p class="text-sm text-slate-600">AI-powered bots can instantly pull and interpret relevant information from customer agreements to provide accurate, personalized support.</p>
+                            </div>
+                             <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 shadow">
+                                <h4 class="font-semibold text-lg text-slate-800 mb-2">Dynamic Business Reporting</h4>
+                                <p class="text-sm text-slate-600">AI can generate sophisticated reports on contract trends, financial obligations, or risk exposure by querying structured agreement data.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 shadow">
+                                <h4 class="font-semibold text-lg text-slate-800 mb-2">Predictive Contract Lifecycle Management</h4>
+                                <p class="text-sm text-slate-600">Utilize AI to predict renewal likelihoods, identify potential risks before they materialize, or suggest optimal negotiation positions based on historical data.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 shadow">
+                                <h4 class="font-semibold text-lg text-slate-800 mb-2">Automated Policy Enforcement</h4>
+                                <p class="text-sm text-slate-600">AI agents can continuously scan incoming or existing agreements, automatically flagging any deviations from predefined company policies or regulatory standards.</p>
+                            </div>
+                             <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 shadow">
+                                <h4 class="font-semibold text-lg text-slate-800 mb-2">Dynamic Document Generation with AI</h4>
+                                <p class="text-sm text-slate-600">Leverage AI to assist in drafting complex legal or business documents by dynamically pulling relevant clauses, terms, and data based on context and specific requirements.</p>
+                            </div>
+                            <div class="p-4 bg-slate-50 rounded-lg border border-slate-200 shadow">
+                                <h4 class="font-semibold text-lg text-slate-800 mb-2">Intelligent HR Onboarding & Compliance</h4>
+                                <p class="text-sm text-slate-600">Automate the creation, review, and compliance checks for HR documents like offer letters, NDAs, and employee agreements, ensuring accuracy and adherence to policies.</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-700 mt-6 leading-relaxed">This innovative integration strategically positions Docusign's vast dataset as a powerfully intelligent and actionable asset for any AI system, ensuring our data is not merely stored, but actively understood and utilized to drive smarter business outcomes and operational efficiencies.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="docusign-partners" class="content-section">
+                <h2 class="text-3xl font-semibold text-sky-600 mb-6">Docusign AI Partners: Extending Agreement Intelligence</h2>
+                <div class="space-y-6 bg-white p-6 rounded-lg shadow-lg">
+                    <p class="text-lg leading-relaxed">Docusign's commitment to smarter agreements extends to a robust ecosystem of partners who are building innovative AI-powered solutions leveraging Docusign's capabilities, especially through our Navigator APIs. These collaborations amplify the impact of agreement intelligence across various business functions.</p>
+                    
+                    <div class="p-4 bg-sky-50 rounded-lg border border-sky-200">
+                        <h3 class="text-xl font-semibold text-sky-700 mb-2">Agentforce: Empowering Agentic AI with Docusign Data</h3>
+                        <p class="text-slate-700">As highlighted in our pre-read, Docusign Navigator is explicitly designed to integrate with agentic AI tools like **Agentforce**. Agentforce is a prominent player in the AI agent space, focusing on building autonomous AI workflows that can interact with various enterprise systems. By configuring Agentforce to call Docusign Navigator APIs (now enhanced via our MCP server), these AI agents gain:</p>
+                        <ul class="list-disc list-inside text-slate-700 mt-2 space-y-1">
+                            <li>**Rich Agreement Data:** Direct access to AI-extracted insights from Docusign agreements, enabling agents to understand contractual nuances.</li>
+                            <li>**Smarter Workflows:** The ability to automate tasks, answer complex queries, and make informed decisions based on real-time agreement context.</li>
+                            <li>**Enhanced Automation:** Agentforce can trigger actions based on agreement terms, such as initiating follow-ups, updating records, or generating reports.</li>
+                        </ul>
+                        <p class="text-slate-700 mt-3">This partnership exemplifies how Docusign's agreement intelligence, when exposed through a standardized protocol like MCP, empowers a new generation of intelligent, autonomous AI solutions.</p>
+                    </div>
+
+                    <div class="mt-8">
+                        <h3 class="text-2xl font-semibold text-sky-600 mb-4">Strategic Platform Integrations: AI & Workflow Synergy</h3>
+                        <p class="mb-4 text-slate-700">Docusign integrates deeply with leading enterprise platforms, enabling seamless AI-powered workflows across critical business functions:</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="p-4 bg-white rounded-lg border border-slate-200 shadow">
+                                <h4 class="font-semibold text-lg text-slate-800 mb-2">Salesforce: AI-Powered Sales & CRM</h4>
+                                <p class="text-sm text-slate-600">Docusign's integration with Salesforce, especially with **Docusign Intelligent Agreement Management (IAM)** and **Navigator**, allows sales teams to directly access AI-extracted agreement insights within their CRM. This enables automated task management, real-time contract risk/opportunity insights, and streamlined deal processes. With Agentforce, agreement data can be pushed directly into Salesforce Data Cloud for enhanced analytics and AI-driven sales strategies.</p>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg border border-slate-200 shadow">
+                                <h4 class="font-semibold text-lg text-slate-800 mb-2">SAP: Digital Transformation Across the Enterprise</h4>
+                                <p class="text-sm text-slate-600">Docusign's long-standing partnership with SAP (including **SuccessFactors**, **Ariba**, **ERP Central Component**) digitizes and automates agreement processes across HR, procurement, and sales. AI can further enhance this by providing insights into contracts generated from SAP, automating compliance checks for vendor agreements, or accelerating HR onboarding documents from within SAP workflows.</p>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg border border-slate-200 shadow">
+                                <h4 class="font-semibold text-lg text-slate-800 mb-2">Microsoft: Productivity & AI-Enhanced Collaboration</h4>
+                                <p class="text-sm text-slate-600">Extensive integration with Microsoft 365 applications (Word, Outlook, Teams, SharePoint) streamlines document preparation and signing. With **Microsoft Power Automate**, Docusign can trigger AI-driven workflows between systems. Crucially, integrations with **Microsoft Copilot for Sales** and **Copilot for M365** allow users to surface Docusign agreement details and insights directly within their Microsoft apps, leveraging AI-powered chat experiences to find agreements or check statuses.</p>
+                            </div>
+                            <div class="p-4 bg-white rounded-lg border border-slate-200 shadow">
+                                <h4 class="font-semibold text-lg text-slate-800 mb-2">ServiceNow: Automating Service & Operations</h4>
+                                <p class="text-sm text-slate-600">Integration with ServiceNow allows for the automation of workflows triggered by Docusign events (e.g., contract completion). This can streamline lead management, enhance customer support by providing agreement context to service agents, and accelerate incident resolution within IT operations by automating document approvals and record updates, potentially leveraging AI models for deeper analysis of linked agreement data.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <h3 class="text-2xl font-semibold text-sky-600 mb-4">System Integrator (SI) Partners: Customizing AI for Enterprise Needs</h3>
+                        <p class="mb-4 text-slate-700">Docusign's network of System Integrator (SI) partners plays a critical role in bringing Docusign's AI capabilities, including those powered by MCP, to specific enterprise challenges. These partners:</p>
+                        <ul class="list-disc list-inside text-slate-700 space-y-2">
+                            <li>**Design & Implement Custom Solutions:** SIs leverage Docusign's SDKs and APIs (including our MCP server) to build tailored AI-driven solutions that meet unique client requirements, integrating Docusign with complex legacy systems or specialized industry applications.</li>
+                            <li>**Drive Digital Transformation:** They help organizations adopt Docusign Intelligent Agreement Management (IAM) and Docusign Iris, enabling AI-powered contract creation, management, and analysis across the entire agreement lifecycle.</li>
+                            <li>**Provide Expertise & Optimization:** SIs offer deep industry knowledge and technical expertise to ensure optimal configuration of AI features, data migration, and workflow automation, maximizing the ROI of Docusign and AI investments for clients.</li>
+                            </ul>
+                        <p class="text-slate-700 mt-3 leading-relaxed">These partnerships are crucial for extending the reach and impact of Docusign's agreement intelligence into diverse enterprise environments, transforming how businesses manage agreements with smart, AI-powered automation.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-12 p-6 text-slate-500 text-sm">
+            <p>&copy; 2025 MCP Interactive Pre-Read. All rights reserved.</p>
+            <p>Developed for internal brown bag session on Model Context Protocol and Docusign Navigator APIs.</p>
+        </footer>
+    </div>
+
+    <script>
+        // M x N Slider Logic
+        const mSlider = document.getElementById('m-slider');
+        const nSlider = document.getElementById('n-slider');
+        const mValue = document.getElementById('m-value');
+        const nValue = document.getElementById('n-value');
+        const mnIntegrations = document.getElementById('mn-integrations');
+        const mnIntegrationsMcp = document.getElementById('mn-integrations-mcp');
+
+        function updateMN() {
+            const m = parseInt(mSlider.value);
+            const n = parseInt(nSlider.value);
+            mValue.textContent = m;
+            nValue.textContent = n;
+            mnIntegrations.textContent = m * n;
+            mnIntegrationsMcp.textContent = m + n; // M + N for MCP
+        }
+
+        mSlider.addEventListener('input', updateMN);
+        nSlider.addEventListener('input', updateMN);
+        updateMN(); // Initialize values
+
+        // Tab Navigation Logic
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                contentSections.forEach(section => section.classList.remove('active'));
+                document.getElementById(button.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Accordion Logic for Primitives
+        document.querySelectorAll('.accordion-button').forEach(button => {
+            const content = button.nextElementSibling;
+            const plusSign = button.querySelector('span');
+
+            // Set initial state to open by default
+            content.classList.add('open');
+            content.style.maxHeight = content.scrollHeight + "px"; // Ensure content height is correct on load
+            plusSign.textContent = '−'; // Minus sign
+
+            button.addEventListener('click', () => {
+                content.classList.toggle('open');
+                if (content.classList.contains('open')) {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    plusSign.textContent = '−'; // Minus sign
+                } else {
+                    content.style.maxHeight = "0";
+                    plusSign.textContent = '+'; // Plus sign
+                }
+            });
+        });
+
+        // MCP Architecture Diagram Interaction
+        const mcpComponents = document.querySelectorAll('.mcp-component');
+        const mcpDescription = document.getElementById('mcp-component-description');
+
+        const componentDescriptions = {
+            host: "<strong>Host (Your Workstation):</strong> This is the AI application or environment you directly interact with. **Examples:** An LLM client like **Claude Desktop**, a **Google Gemini UI**, **Microsoft Copilot Studio**, or an IDE plugin like **VS Code with GitHub Copilot**.",
+            client: "<strong>Client (Your Assistant):</strong> A specialized library or process within the Host. Its job is to understand what the Host (AI) needs, manage connections to various MCP Servers, and translate AI requests into standard MCP calls. **Example:** The **MCP SDK** (e.g., Anthropic's Python SDK, Java SDK) embedded within your AI application.",
+            server: "<strong>MCP Server (Department Head):</strong> A dedicated process or service that exposes specific Tools and Resources to MCP Clients. It acts as an adapter, translating MCP requests into calls to underlying external APIs, databases, or enterprise systems. **Examples:** Our **Docusign Navigator MCP server**, a **GitHub MCP Server**, a **Terraform MCP Server**, or a **Stripe MCP Server**.",
+            external: "<strong>External Systems (Specialists):</strong> These are the actual third-party APIs, databases, file systems, or other enterprise applications that the MCP Server interacts with to fulfill AI requests. **Examples:** **Docusign Navigator APIs**, **Salesforce APIs**, **PostgreSQL databases**, **Slack APIs**, **Stripe APIs**, or internal enterprise systems."
+        };
+
+        mcpComponents.forEach(component => {
+            component.addEventListener('click', () => {
+                const compType = component.dataset.component;
+                mcpDescription.innerHTML = componentDescriptions[compType] || "Click on an office role (Host, Client, Server, External Systems) to see its description.";
+            });
+        });
+
+        // MCP vs. APIs Table Hover Effect
+        const comparisonTableRows = document.querySelectorAll('#mcp-vs-apis table tbody tr');
+        const comparisonDetailBox = document.getElementById('comparison-detail');
+
+        comparisonTableRows.forEach(row => {
+            row.addEventListener('mouseover', () => {
+                const detailText = row.dataset.detail;
+                // Add more detailed descriptions here if desired, corresponding to data-detail
+                const descriptions = {
+                    "Primary Purpose": "Traditional APIs focus on sending and receiving specific data. MCP is about giving AI models intelligent access to tools and context.",
+                    "Interface Definition": "APIs have fixed blueprints. MCP tools and resources dynamically describe themselves, making them flexible for AI.",
+                    "Context Handling": "APIs require you to manually manage context. MCP intrinsically manages structured context for AI to understand.",
+                    "Tool Discovery": "With APIs, you know what's available. With MCP, AI can intelligently discover and choose the right tool dynamically.",
+                    "Primary Consumer": "APIs are for developers and other software. MCP is specifically designed for AI models and agents.",
+                    "Integration Effort": "Integrating many APIs is complex. MCP's standard reduces this to a single integration point for AI."
+                };
+                comparisonDetailBox.innerHTML = `<p><strong>${detailText}:</strong> ${descriptions[detailText] || ''}</p>`;
+                row.classList.add('bg-sky-100'); // Highlight row on hover
+            });
+            row.addEventListener('mouseout', () => {
+                comparisonDetailBox.innerHTML = `<p>Hover over a row in the table above to highlight key differences between APIs and MCP.</p>`;
+                row.classList.remove('bg-sky-100'); // Remove highlight
+            });
+        });
+    </script>
+</body>
+</html>
