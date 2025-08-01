@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docusign MCP Server Setup Guide for ChatGPT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        h2 {
+            color: #34495e;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .overview {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .prerequisites {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .warning {
+            background: #f8d7da;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .success {
+            background: #d1edff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #28a745;
+        }
+        
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+        }
+        
+        .inline-code {
+            background: #f1f3f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+        }
+        
+        .step {
+            background: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+        
+        .step-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #2c3e50;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .file-structure {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            white-space: pre;
+        }
+        
+        .nav {
+            background: #2c3e50;
+            padding: 15px 0;
+            margin-bottom: 30px;
+        }
+        
+        .nav ul {
+            list-style: none;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav li {
+            margin: 0 15px;
+        }
+        
+        .nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav a:hover {
+            background-color: #34495e;
+        }
+        
+        .troubleshooting {
+            background: #fff5f5;
+            border: 1px solid #fed7d7;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .checklist {
+            background: #f0fff4;
+            border: 1px solid #9ae6b4;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .checklist ul {
+            list-style: none;
+        }
+        
+        .checklist li:before {
+            content: "✅ ";
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#step1">Download Files</a></li>
+            <li><a href="#step2">Configure</a></li>
+            <li><a href="#step3">Python Setup</a></li>
+            <li><a href="#step4">Authentication</a></li>
+            <li><a href="#step5">MCP Server</a></li>
+            <li><a href="#step6">Bridge</a></li>
+            <li><a href="#step7">Testing</a></li>
+            <li><a href="#step8">Cloudflare</a></li>
+            <li><a href="#step9">ChatGPT</a></li>
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Docusign MCP Server Setup Guide</h1>
+
+        <div class="overview" id="overview">
+            <h2>Overview</h2>
+            <p>This guide will help you set up a Docusign MCP (Model Context Protocol) server that integrates with ChatGPT via a custom GPT. The system allows ChatGPT to interact with Docusign APIs for document management and e-signature workflows.</p>
+        </div>
+
+        <div class="prerequisites">
+            <h2>Prerequisites</h2>
+            <ul>
+                <li>Python 3.8 or higher</li>
+                <li>ChatGPT Plus subscription</li>
+                <li>Docusign Developer Account</li>
+                <li>Basic command line knowledge</li>
+            </ul>
+        </div>
+
+        <div class="step" id="step1">
+            <div class="step-title">
+                <span class="step-number">1</span>
+                <span>Download and Store Files</span>
+            </div>
+            
+            <ol>
+                <li>Create a new folder for the project:
+                    <div class="code-block">mkdir Docusign-mcp-server
+cd Docusign-mcp-server</div>
+                </li>
+                
+                <li>Download and save these files in the folder:
+                    <ul>
+                        <li><span class="inline-code">complete_enhanced_Docusign_mcp.py</span> (Main MCP server)</li>
+                        <li><span class="inline-code">Docusign_auth_app.py</span> (OAuth authentication Flask app)</li>
+                        <li><span class="inline-code">mcp_bridge.py</span> (Bridge to OpenAI-compatible API)</li>
+                        <li><span class="inline-code">env Replace to.env.txt</span> (Environment configuration template)</li>
+                    </ul>
+                </li>
+                
+                <li>Your folder structure should look like:
+                    <div class="file-structure">Docusign-mcp-server/
+├── complete_enhanced_Docusign_mcp.py
+├── Docusign_auth_app.py
+├── mcp_bridge.py
+└── env Replace to.env.txt</div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="step" id="step2">
+            <div class="step-title">
+                <span class="step-number">2</span>
+                <span>Configure Environment Variables</span>
+            </div>
+            
+            <ol>
+                <li><strong>Rename the environment file:</strong>
+                    <div class="code-block">mv "env Replace to.env.txt" .env</div>
+                </li>
+                
+                <li><strong>Get Docusign credentials:</strong>
+                    <ul>
+                        <li>Go to your<a href="https://apps-d.docusign.com/admin/apps-and-keys/" target="_blank"> Docusign Demo Account</a></li>
+                        <li>Create a new app or use existing one</li>
+                        <li>Note down:
+                            <ul>
+                                <li>Integration Key (Client ID)</li>
+                                <li>Secret Key (Client Secret)</li>
+                                <li>API Account ID</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li><strong>Configure redirect URI in Docusign:</strong>
+                    <ul>
+                        <li>In your Docusign app settings, add redirect URI: <span class="inline-code">http://localhost:5000/callback</span></li>
+                    </ul>
+                </li>
+                
+                <li><strong>Edit the .env file:</strong>
+                    <p>Open <span class="inline-code">.env</span> and replace the blank values:</p>
+                    <div class="code-block"># .env
+MCP_MODEL=claude-3-5-sonnet-20240620 <br>
+
+# Docusign credentials <br>
+Docusign_CLIENT_ID=your_integration_key_here<br>
+
+Docusign_CLIENT_SECRET=your_secret_key_here<br>
+
+Docusign_ACCOUNT_ID=your_account_id_here
+<br>
+Docusign_AUTH_SERVER=https://account-d.Docusign.com/oauth/userinfo<br>
+Docusign_AUTH_BASE_URL=https://account-d.Docusign.com/oauth<br>
+Docusign_API_BASE_URL=https://api-d.Docusign.com<br>
+Docusign_NAVIGATOR_BASE_URL=https://api-d.Docusign.com<br>
+Docusign_REDIRECT_URI=http://localhost:5000/callback<br>
+
+Docusign_ACCESS_TOKEN=<br>
+
+# Server configuration<br>
+PORT=3000<br>
+
+# Flask server configuration (optional)<br>
+FLASK_ENV=development<br>
+FLASK_DEBUG=1<br>
+
+# Flask secret key (optional for sessions)<br>
+FLASK_SECRET_KEY=your_random_secret_key_here<br></div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="step" id="step3">
+            <div class="step-title">
+                <span class="step-number">3</span>
+                <span>Set Up Python Environment</span>
+            </div>
+            
+            <ol>
+                <li><strong>Create a virtual environment:</strong>
+                    <div class="code-block">python -m venv venv</div>
+                </li>
+                
+                <li><strong>Activate the virtual environment:</strong>
+                    <ul>
+                        <li><strong>Windows:</strong>
+                            <div class="code-block">venv\Scripts\activate</div>
+                        </li>
+                        <li><strong>macOS/Linux:</strong>
+                            <div class="code-block">source venv/bin/activate</div>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li><strong>Install required packages:</strong>
+                    <div class="code-block">pip install flask flask-cors python-dotenv requests fastmcp mcp asyncio</div>
+                </li>
+            </ol>
+        </div>
+
+        <div class="step" id="step4">
+            <div class="step-title">
+                <span class="step-number">4</span>
+                <span>Run Docusign Authentication</span>
+            </div>
+            
+            <ol>
+                <li><strong>Start the authentication server:</strong>
+                    <div class="code-block">python Docusign_auth_app.py</div>
+                </li>
+                
+                <li><strong>Open your browser and go to:</strong>
+                    <div class="code-block">http://localhost:5000</div>
+                </li>
+                
+                <li><strong>Complete Docusign authentication:</strong>
+                    <ul>
+                        <li>Click "Connect to Docusign"</li>
+                        <li>Sign in with your Docusign credentials</li>
+                        <li>Accept the permissions</li>
+                        <li>You should see "Authentication Successful" message</li>
+                    </ul>
+                </li>
+                
+                <li><strong>A <span class="inline-code">Docusign_token.json</span> file should now exist in your folder.</li>
+            </ol>
+        </div>
+
+        <div class="step" id="step5">
+            <div class="step-title">
+                <span class="step-number">5</span>
+                <span>Run the MCP Server</span>
+            </div>
+            
+            <ol>
+                <li><strong>In a new terminal, navigate to your project folder and activate the virtual environment:</strong>
+                    <div class="code-block">cd Docusign-mcp-server
+source venv/bin/activate  # or venv\Scripts\activate on Windows</div>
+                </li>
+                
+                <li><strong>Start the MCP server:</strong>
+                    <div class="code-block">python complete_enhanced_Docusign_mcp.py</div>
+                </li>
+                
+                <li><strong>Keep this terminal running</strong> - you should see logs indicating the server is working.</li>
+            </ol>
+        </div>
+
+        <div class="step" id="step6">
+            <div class="step-title">
+                <span class="step-number">6</span>
+                <span>Run the MCP Bridge</span>
+            </div>
+            
+            <ol>
+                <li><strong>In another new terminal, navigate to your project folder and activate the virtual environment:</strong>
+                    <div class="code-block">cd Docusign-mcp-server
+source venv/bin/activate  # or venv\Scripts\activate on Windows</div>
+                </li>
+                
+                <li><strong>Start the bridge server:</strong>
+                    <div class="code-block">python mcp_bridge.py</div>
+                </li>
+                
+                <li><strong>Keep this terminal running</strong> - you should see "MCP Bridge server running on http://localhost:3001"</li>
+            </ol>
+        </div>
+
+        <div class="step" id="step7">
+            <div class="step-title">
+                <span class="step-number">7</span>
+                <span>Test Local Setup</span>
+            </div>
+            
+            <ol>
+                <li><strong>Check health endpoint:</strong>
+                    <p>Open your browser and go to:</p>
+                    <div class="code-block">http://localhost:3001/health</div>
+                    <p>You should see:</p>
+                    <div class="code-block">{
+  "status": "ok",
+  "connected": true,
+  "tools": [number of tools]
+}</div>
+                </li>
+                
+                <li><strong>Check available tools:</strong>
+                    <div class="code-block">http://localhost:3001/tools</div>
+                    <p>You should see a list of available Docusign tools.</p>
+                </li>
+            </ol>
+        </div>
+
+        <div class="step" id="step8">
+            <div class="step-title">
+                <span class="step-number">8</span>
+                <span>Create Cloudflare Tunnel</span>
+            </div>
+            
+            <ol>
+                <li><strong>Install Cloudflare Tunnel (cloudflared):</strong>
+                    <ul>
+                        <li>Download from <a href="https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/downloads/" target="_blank">Cloudflare website</a></li>
+                        <li>Or use package manager:
+                            <div class="code-block"># macOS with Homebrew
+brew install cloudflared
+<br>
+# Windows with Chocolatey
+choco install cloudflared</div>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li><strong>Create a tunnel:</strong>
+                    <div class="code-block">cloudflared tunnel --url http://localhost:3001</div>
+                </li>
+                
+                <li><strong>Note the public URL</strong> provided (something like <span class="inline-code">https://random-string.trycloudflare.com</span>)</li>
+                
+                <li><strong>Keep the cloudflared command running</strong> in another terminal.</li>
+            </ol>
+        </div>
+
+        <div class="step" id="step9">
+            <div class="step-title">
+                <span class="step-number">9</span>
+                <span>Configure ChatGPT Custom GPT</span>
+            </div>
+            
+            <ol>
+                <li><strong>Go to ChatGPT:</strong>
+                    <ul>
+                        <li>Visit <a href="https://chat.openai.com" target="_blank">chat.openai.com</a></li>
+                        <li>Ensure you have ChatGPT Plus subscription</li>
+                    </ul>
+                </li>
+                
+                <li><strong>Create a Custom GPT:</strong>
+                    <ul>
+                        <li>Click on your profile → "My GPTs"</li>
+                        <li>Click "Create a GPT"</li>
+                        <li>Choose "Configure" tab</li>
+                    </ul>
+                </li>
+                
+                <li><strong>Configure the GPT:</strong>
+                    <ul>
+                        <li><strong>Name:</strong> "Docusign MCP Assistant"</li>
+                        <li><strong>Description:</strong> "Personal assistant for tracking status, sending new envelopes and analyzing all agreements in my Docusign account through my Docusign MCP server"</li>
+                        <li><strong>Instructions:</strong>
+                            <div class="code-block">
+                                <br> You are my personal Docusign assistant connected to my MCP server. When I ask about Docusign:
+
+                                <br>TOOL SELECTION:
+                                <br>- Authentication/account questions → get_auth_status
+                                <br>- List envelopes → list_envelopes (with status filter if needed)
+                                <br>- Completed documents or contracts or specific details → list_agreements
+                                <br>- Unsigned documents → find_unsigned_envelopes
+                                <br>- User profile → get_user_info
+                                <br>- Specific envelope details → get_envelope_status (needs envelope_id)
+                                <br>- Recipients info → get_envelope_recipients (needs envelope_id)
+                                <br>- Create agreement →create_envelope_from_template (needs template_id, recipient name and email, email subject and message)
+                                <br>- Send a document for eSign→ send_document_for_signature, 
+                                <br>- Use a Docusign template to send an agreement for esign →create_envelope_from_template, 
+                                <br>- List envelopes pending for signature→find_unsigned_envelopes
+
+                                <br>RESPONSE STYLE:
+                                <br>- Answer my specific question directly and conversationally
+                                <br>- Extract exact details (names, dates, amounts and everything else) when available
+                                <br>- Be helpful and specific, not just descriptive
+                                <br>- Focus on what I actually asked for
+                                <br>- Re ask till you get my response
+
+                                <br>Always provide actionable insights from the Docusign data.
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li><strong>Add Actions:</strong>
+                    <ul>
+                        <li>Scroll down to "Actions"</li>
+                        <li>Click "Create new action"</li>
+                        <li><strong>Authentication:</strong> None</li>
+                        <li><strong>Schema:</strong> Use the OpenAPI schema below</li>
+                    </ul>
+                </li>
+                
+                <li><strong>OpenAPI Schema:</strong>
+                    <p>Visit <span class="inline-code">http://localhost:3001/tools</span> and create an OpenAPI schema like:</p>
+                    <div class="code-block">
+                        <br>openapi: 3.1.0
+                        <br>info:
+                            <br>title: Docusign MCP Server
+                            <br>description: Connect to personal Docusign MCP server
+                            <br>version: 1.0.0
+                        <br>servers:
+                            <br>- url: https://your-cloudflare-url.trycloudflare.com
+                        <br>paths:
+                            <br>/call-tool:
+                                <br>post:
+                                    <br>operationId: callMCPTool
+                                    <br>summary: Execute Docusign MCP tool
+                                    <br>requestBody:
+                                        <br>required: true
+                                        <br>content:
+                                            <br>application/json:
+                                                <br> schema:
+                                                    <br>type: object
+                                                    <br>properties:
+                                                        <br>toolName:
+                                                            <br>type: string
+                                                            <br>enum:
+                                                                <br>- check_token_file
+                                                                <br>- test
+                                                                <br>- get_auth_status
+                                                                <br>- get_user_info
+                                                                <br>- list_agreements
+                                                                <br>- list_envelopes
+                                                                <br>- get_envelope_status
+                                                                <br>- get_envelope_recipients
+                                                                <br>- send_document_for_signature
+                                                                <br>- create_envelope_from_template
+                                                                <br>- find_unsigned_envelopes
+                                                        <br>parameters:
+                                                            <br>type: object
+                                                            <br>properties:
+                                                                <br>status:
+                                                                    <br>type: string
+                                                                    <br>enum:
+                                                                        <br> - completed
+                                                                        <br>- sent
+                                                                        <br>- delivered
+                                                                        <br>- voided
+                                                                        <br>- declined
+                                                                <br>from_date:
+                                                                    <br>type: string
+                                                                    <br>pattern: ^\d{4}-\d{2}-\d{2}$
+                                                                <br>envelope_id:
+                                                                    <br> type: string
+                                                                <br>document_path:
+                                                                    <br> type: string
+                                                                <br>signer_email:
+                                                                    <br>  type: string
+                                                                <br>signer_name:
+                                                                    <br>  type: string
+                                                                <br>email_subject:
+                                                                    <br>  type: string
+                                                            <br>required:
+                                                                <br> - toolName
+                                    <br>responses:
+                                        <br> "200":
+                                            <br>   description: Success
+                                            <br>   content:
+                                                <br>     application/json:
+                                                <br>        schema:
+                                                <br>          type: object
+                                                <br>          properties:
+                                                <br>            result:
+                                                <br>              type: string
+
+    
+</div>
+                </li>
+                
+                <li><strong>Replace the server URL</strong> with your Cloudflare tunnel URL</li>
+                
+                <li><strong>Save the Custom GPT</strong></li>
+            </ol>
+        </div>
+
+        <div class="step" id="step10">
+            <div class="step-title">
+                <span class="step-number">10</span>
+                <span>Test the Integration</span>
+            </div>
+            
+            <ol>
+                <li><strong>Start a conversation with your Custom GPT</strong></li>
+                
+                <li><strong>Test basic commands:</strong>
+                    <ul>
+                        <li>"Check my Docusign authentication status"</li>
+                        <li>"List my Docusign agreeements"</li>
+                        <li>"Do I have any NDA with Tally"</li>
+                        <li>"Show my top 3 signed agreements in terms of contract or purchase value"</li>
+                    </ul>
+                </li>
+                
+                <li><strong>Test document operations:</strong>
+                    <ul>
+                        <li>Upload a PDF and ask to send it for signature</li>
+                        <li>Check envelope status</li>
+                        <li>List recipients for a specific envelope</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="troubleshooting" id="troubleshooting">
+            <h2>Troubleshooting</h2>
+            
+            <h3>Common Issues:</h3>
+            
+            <div class="warning">
+                <strong>Authentication fails:</strong>
+                <ul>
+                    <li>Check Docusign credentials in <span class="inline-code">.env</span></li>
+                    <li>Verify redirect URI is configured correctly</li>
+                    <li>Ensure using the correct Docusign environment (demo vs production)</li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                <strong>MCP server won't start:</strong>
+                <ul>
+                    <li>Check Python version (3.8+)</li>
+                    <li>Verify all dependencies installed</li>
+                    <li>Check file permissions</li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                <strong>Bridge connection fails:</strong>
+                <ul>
+                    <li>Ensure MCP server is running first</li>
+                    <li>Check for port conflicts</li>
+                    <li>Review terminal logs for errors</li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                <strong>ChatGPT can't reach the server:</strong>
+                <ul>
+                    <li>Verify Cloudflare tunnel is active</li>
+                    <li>Check the URL in ChatGPT configuration</li>
+                    <li>Test the tunnel URL manually</li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                <strong>Tools not working:</strong>
+                <ul>
+                    <li>Verify Docusign token is valid</li>
+                    <li>Check API rate limits</li>
+                    <li>Review Docusign account permissions</li>
+                </ul>
+            </div>
+            
+            <h3>Logs and Debugging:</h3>
+            <ul>
+                <li>Check <span class="inline-code">Docusign_mcp_debug.log</span> for detailed MCP server logs</li>
+                <li>Monitor terminal outputs for real-time debugging</li>
+                <li>Test endpoints manually with curl or browser</li>
+            </ul>
+            
+            <h3>Security Notes:</h3>
+            <ul>
+                <li>Keep your <span class="inline-code">.env</span> file secure and never commit it to version control</li>
+                <li>The Cloudflare tunnel URL is temporary - use permanent solutions for production</li>
+                <li>Regularly refresh Docusign tokens</li>
+                <li>Monitor API usage and rate limits</li>
+            </ul>
+        </div>
+
+        <div class="checklist">
+            <h2>Success Indicators</h2>
+            <ul>
+                <li><strong>Authentication successful message in browser</strong></li>
+                <li><strong>MCP server logs show "authenticated with Docusign"</strong></li>
+                <li><strong>Bridge server running on port 3001</strong></li>
+                <li><strong>Health endpoint returns connected: true</strong></li>
+                <li><strong>Cloudflare tunnel provides public URL</strong></li>
+                <li><strong>ChatGPT can call Docusign functions successfully</strong></li>
+            </ul>
+            
+            <div class="success">
+                <strong>🎉 Your Docusign MCP server is now ready for use with ChatGPT!</strong>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
