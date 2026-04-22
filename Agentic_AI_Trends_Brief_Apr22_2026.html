@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic AI Pulse — April 22, 2026</title>
+<style>
+  :root {
+    --ink: #0B0C1A;
+    --ink-light: #1E2035;
+    --ds-blue: #2B5EFF;
+    --ds-blue-light: #EEF2FF;
+    --ds-purple: #6B2FFA;
+    --opp: #0D9E6E;
+    --opp-bg: #ECFDF5;
+    --embed: #2B5EFF;
+    --embed-bg: #EEF2FF;
+    --compete: #DC2626;
+    --compete-bg: #FEF2F2;
+    --watch: #D97706;
+    --watch-bg: #FFFBEB;
+    --inspire: #7C3AED;
+    --inspire-bg: #F5F3FF;
+    --new-bg: #FFF7ED;
+    --new-border: #FB923C;
+    --new-text: #C2410C;
+    --surface: #FFFFFF;
+    --border: #E5E7EB;
+    --text: #111827;
+    --text-muted: #6B7280;
+    --text-light: #9CA3AF;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-hover: 0 4px 12px rgba(0,0,0,0.12), 0 12px 32px rgba(0,0,0,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: #F3F4F8;
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--ink);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 18px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .header-left { display: flex; align-items: center; gap: 14px; }
+  .ds-logo {
+    background: var(--ds-blue);
+    color: white;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    padding: 6px 12px;
+    border-radius: 6px;
+  }
+  .header-title {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+  }
+  .header-meta {
+    color: rgba(255,255,255,0.45);
+    font-size: 13px;
+  }
+  .header-date {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+  }
+
+  /* ── HERO BAND ── */
+  .hero {
+    background: linear-gradient(135deg, var(--ink) 0%, #1a1f4e 60%, #2B3080 100%);
+    padding: 56px 32px 48px;
+  }
+  .hero-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero-headline {
+    color: white;
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    max-width: 720px;
+  }
+  .hero-headline span { color: #7EB2FF; }
+  .hero-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 16px;
+    max-width: 600px;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .hero-principle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 10px 16px;
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    font-style: italic;
+  }
+  .hero-principle::before { content: '"'; color: var(--ds-blue); font-size: 20px; font-style: normal; line-height: 1; }
+  .hero-principle::after  { content: '"'; color: var(--ds-blue); font-size: 20px; font-style: normal; line-height: 1; }
+
+  /* ── LEGEND ── */
+  .legend-bar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 12px 32px;
+  }
+  .legend-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .legend-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    margin-right: 6px;
+  }
+
+  /* ── CATEGORY BADGES ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .badge-opp     { background: var(--opp-bg);     color: var(--opp);     border: 1px solid #A7F3D0; }
+  .badge-embed   { background: var(--embed-bg);   color: var(--embed);   border: 1px solid #BFDBFE; }
+  .badge-compete { background: var(--compete-bg); color: var(--compete); border: 1px solid #FECACA; }
+  .badge-watch   { background: var(--watch-bg);   color: var(--watch);   border: 1px solid #FDE68A; }
+  .badge-inspire { background: var(--inspire-bg); color: var(--inspire); border: 1px solid #DDD6FE; }
+  .badge-new     { background: var(--new-bg);     color: var(--new-text);border: 1px solid #FDBA74; font-size: 9px; }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 1100px; margin: 0 auto; padding: 40px 32px 80px; }
+
+  /* ── SECTION HEADERS ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    margin-top: 48px;
+  }
+  .section-header:first-child { margin-top: 0; }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .section-icon-blue   { background: var(--embed-bg); }
+  .section-icon-orange { background: var(--new-bg); }
+  .section-icon-green  { background: var(--opp-bg); }
+  .section-icon-purple { background: var(--inspire-bg); }
+  .section-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.4px;
+  }
+  .section-count {
+    background: var(--border);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+
+  /* ── DIVIDER ── */
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* ── CARD GRID ── */
+  .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 768px) { .card-grid { grid-template-columns: 1fr; } }
+  .card-grid-1 { grid-template-columns: 1fr; }
+
+  /* ── NEWS CARD ── */
+  .news-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .news-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+  }
+  .news-card.new-card {
+    border-left: 3px solid var(--new-border);
+  }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .card-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+  .card-date {
+    color: var(--text-light);
+    font-size: 11px;
+    white-space: nowrap;
+    padding-top: 2px;
+    flex-shrink: 0;
+  }
+  .card-source-label {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-light);
+    margin-bottom: 2px;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.2px;
+    line-height: 1.4;
+  }
+  .card-body {
+    font-size: 13.5px;
+    color: #374151;
+    line-height: 1.65;
+  }
+  .card-relevance {
+    background: #F8F9FF;
+    border: 1px solid #E0E4FF;
+    border-radius: 6px;
+    padding: 10px 13px;
+    font-size: 12.5px;
+    color: #2B3A8F;
+    line-height: 1.55;
+  }
+  .card-relevance strong { color: #1a2470; }
+  .card-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+  }
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11.5px;
+    color: var(--ds-blue);
+    text-decoration: none;
+    background: var(--embed-bg);
+    padding: 3px 9px;
+    border-radius: 4px;
+    border: 1px solid #BFDBFE;
+    transition: background 0.15s;
+  }
+  .card-link:hover { background: #DBEAFE; }
+  .card-link::before { content: "↗"; font-size: 10px; opacity: 0.7; }
+
+  /* ── MACRO CARD ── */
+  .macro-card {
+    background: linear-gradient(135deg, var(--ink) 0%, #1a2060 100%);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    color: white;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 24px rgba(11,12,26,0.25);
+  }
+  .macro-card h3 {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    letter-spacing: -0.4px;
+  }
+  .macro-card p { color: rgba(255,255,255,0.75); font-size: 14.5px; line-height: 1.65; }
+  .macro-card p strong { color: #7EB2FF; }
+
+  /* ── POSITION TABLE ── */
+  .position-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    font-size: 13.5px;
+  }
+  .position-table thead tr { background: var(--ink); }
+  .position-table thead th {
+    color: rgba(255,255,255,0.8);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+  }
+  .position-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  .position-table tbody tr:last-child { border-bottom: none; }
+  .position-table tbody tr:hover { background: #F8F9FF; }
+  .position-table td { padding: 13px 16px; vertical-align: top; line-height: 1.5; }
+  .position-table td:first-child { color: var(--ds-blue); font-weight: 600; }
+  .position-table td:last-child { color: var(--opp); font-weight: 500; }
+
+  /* ── BUILD TIERS ── */
+  .tier-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .tier-grid { grid-template-columns: 1fr; } }
+  .tier-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .tier-header {
+    padding: 14px 18px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tier-1 .tier-header { background: #ECFDF5; color: #065F46; border-bottom: 1px solid #A7F3D0; }
+  .tier-2 .tier-header { background: #EEF2FF; color: #1E40AF; border-bottom: 1px solid #BFDBFE; }
+  .tier-3 .tier-header { background: #F5F3FF; color: #5B21B6; border-bottom: 1px solid #DDD6FE; }
+  .tier-body { padding: 16px 18px; }
+  .tier-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .tier-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .tier-item-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+  .tier-item-desc {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+  .tier-item-quote {
+    font-size: 11.5px;
+    color: var(--ds-blue);
+    font-style: italic;
+    margin-top: 5px;
+    background: var(--embed-bg);
+    padding: 5px 9px;
+    border-radius: 4px;
+    border-left: 2px solid var(--ds-blue);
+  }
+
+  /* ── MEETING FRAME ── */
+  .meeting-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .meeting-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .meeting-row:last-child { border-bottom: none; }
+  .meeting-row:hover { background: #F8F9FF; }
+  .meeting-time {
+    background: var(--ink);
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 8px;
+    letter-spacing: 0.3px;
+  }
+  .meeting-topic {
+    padding: 16px 20px;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .meeting-topic strong { color: var(--ink); }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px 48px;
+    font-size: 11.5px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  .page-footer a { color: var(--text-muted); }
+
+  /* ── SCROLL TO TOP ── */
+  .scroll-top {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    background: var(--ink);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px; height: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 50;
+  }
+  .scroll-top.visible { opacity: 1; }
+
+  /* ── TABS ── */
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 20px;
+    width: fit-content;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-muted);
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .tab-btn.active {
+    background: var(--ink);
+    color: white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .tab-btn:hover:not(.active) { background: var(--border); color: var(--text); }
+
+  .filter-hidden { display: none !important; }
+
+  /* Pill stats */
+  .stats-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .stat-pill {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 18px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat-num { font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -0.5px; }
+  .stat-label { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="ds-logo">IAM</div>
+      <div>
+        <div class="header-title">Agentic AI Industry Pulse</div>
+        <div class="header-meta">20% Time — Industry Trends Briefing</div>
+      </div>
+    </div>
+    <div class="header-date">April 22, 2026 &nbsp;·&nbsp; Last 2 weeks</div>
+  </div>
+</header>
+
+<!-- LEGEND -->
+<div class="legend-bar">
+  <div class="legend-inner">
+    <span class="legend-label">TAGS</span>
+    <span class="badge badge-opp">🟢 OPP — Near-term opportunity</span>
+    <span class="badge badge-embed">🔵 EMBED — Embed IAM here today</span>
+    <span class="badge badge-compete">🔴 COMPETE — Watch this space</span>
+    <span class="badge badge-watch">🟡 WATCH — Early signal</span>
+    <span class="badge badge-inspire">💡 INSPIRE — Borrow this pattern</span>
+    <span class="badge badge-new">🔥 NEW — Since Apr 20</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Docusign IAM · Agentic AI Positioning</div>
+    <h1 class="hero-headline">The <span>Agreement Layer</span><br>of Agentic AI</h1>
+    <p class="hero-sub">Every AI agent that creates a business commitment — closes a deal, approves a hire, selects a vendor — needs Docusign IAM at the terminus. This week: <strong>Google Cloud committed $750M to partner-built agents</strong>, Salesforce and Google are now executing cross-platform agents, AWS shipped AgentCore governance (Policy, Evaluations, Memory), and Adobe debuted CX Enterprise Coworker. The hyperscalers are fighting for the agent runtime — we own the agreement it ends in.</p>
+    <div class="hero-principle">Skate to where the puck is going, not where it has been.</div>
+  </div>
+</div>
+
+<!-- MAIN PAGE -->
+<div class="page">
+
+  <!-- STATS ROW -->
+  <div class="stats-row">
+    <div class="stat-pill">
+      <div class="stat-num">23</div>
+      <div class="stat-label">News items tracked</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-num" style="color:var(--new-text)">5</div>
+      <div class="stat-label">New since Apr 20</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-num" style="color:var(--opp)">10</div>
+      <div class="stat-label">Direct opportunities</div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-num">$750M</div>
+      <div class="stat-label">Google Cloud agentic AI fund<br><span style="font-size:10px;color:var(--text-light)">(Apr 22)</span></div>
+    </div>
+    <div class="stat-pill">
+      <div class="stat-num">1M</div>
+      <div class="stat-label">Claude Opus 4.7 context window<br><span style="font-size:10px;color:var(--text-light)">(GA in AWS Bedrock, Apr 20)</span></div>
+    </div>
+  </div>
+
+  <!-- MACRO SIGNAL -->
+  <div class="macro-card">
+    <h3>⚡ The Macro Signal: Hyperscalers Are Buying the Agent Runtime — Who Owns the Agreement?</h3>
+    <p>Two back-to-back weeks have redrawn the agentic AI map. Last week: agent <em>identity</em> became the battleground (Docusign + World ID, Okta, Entra). This week: hyperscalers are <em>buying the agent runtime</em>. <strong>Google Cloud just committed $750M to fund partners building on Gemini Enterprise Agent Platform</strong> (Apr 22). <strong>AWS shipped Bedrock AgentCore with Policy, Evaluations, and Memory</strong> (Apr 22) — enterprise governance baked in. <strong>Salesforce and Google are now executing agents across both platforms</strong>, and Adobe debuted <strong>CX Enterprise Coworker</strong> for multi-agent customer-lifecycle orchestration. Every one of these platforms needs the same thing at the end of an agent's decision: <strong>a legally binding record that something was actually agreed.</strong> That's us.</p>
+  </div>
+
+  <!-- FILTER TABS -->
+  <div class="tab-bar" id="filterBar">
+    <button class="tab-btn active" onclick="filterCards('all', this)">All (23)</button>
+    <button class="tab-btn" onclick="filterCards('opp', this)">🟢 OPP</button>
+    <button class="tab-btn" onclick="filterCards('embed', this)">🔵 EMBED</button>
+    <button class="tab-btn" onclick="filterCards('compete', this)">🔴 COMPETE</button>
+    <button class="tab-btn" onclick="filterCards('watch', this)">🟡 WATCH</button>
+    <button class="tab-btn" onclick="filterCards('inspire', this)">💡 INSPIRE</button>
+    <button class="tab-btn" onclick="filterCards('new', this)">🔥 NEW</button>
+  </div>
+
+  <!-- ══════════════════════ NEW THIS WEEK ══════════════════════ -->
+  <div class="section-header">
+    <div class="section-icon section-icon-orange">🔥</div>
+    <div>
+      <div class="section-title">New Since Apr 20 — The Past 48 Hours</div>
+    </div>
+    <span class="section-count">5 items</span>
+  </div>
+
+  <div class="card-grid card-grid-1" id="newsContainer">
+
+    <!-- NEW 1: Google Cloud $750M + Gemini Enterprise Agent Platform -->
+    <div class="news-card new-card" data-tags="opp compete embed new">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-new">🔥 NEW — Apr 22</span>
+          <span class="badge badge-opp">🟢 OPP</span>
+          <span class="badge badge-compete">🔴 COMPETE</span>
+          <span class="badge badge-embed">🔵 EMBED</span>
+        </div>
+        <div class="card-date">April 22, 2026</div>
+      </div>
+      <div class="card-source-label">Google Cloud</div>
+      <div class="card-title">Google Cloud Commits $750M to Partner-Built Agents + Revamps Gemini Enterprise as "Agent Platform"</div>
+      <div class="card-body">Google Cloud announced a $750M fund for its 120,000-member partner ecosystem — covering AI value identification, agentic prototyping, agent building/deployment, upskilling, and embedded forward-deployed engineers. In parallel, Google re-cast <strong>Gemini Enterprise</strong> as a "secure, collaborative autonomous engine" with a new <strong>Gemini Enterprise Agent Platform</strong> for building long-running agents. Accenture concurrently launched a Gemini Enterprise Acceleration Program.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> This is a full-court press to make Google Cloud the default enterprise agent runtime. Three moves for Docusign: (1) Apply to the partner fund — our agreement-layer reference implementations on Gemini Enterprise should qualify. (2) Get IAM listed as a native tool in the Gemini Enterprise Agent Platform catalog the way we did with Salesforce Agentforce and Microsoft Copilot. (3) Partner with Accenture's Gemini acceleration team — they'll be in every enterprise account helping build these agents; our agreement layer should be in their reference architecture.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.googlecloudpresscorner.com/2026-04-22-Google-Cloud-Commits-750-Million-to-Accelerate-Partners-Agentic-AI-Development" target="_blank">Google Cloud press release</a>
+        <a class="card-link" href="https://siliconangle.com/2026/04/22/google-puts-gemini-enterprise-heart-new-agentic-taskforce-enterprise-automation/" target="_blank">SiliconANGLE — Gemini Enterprise Agent Platform</a>
+        <a class="card-link" href="https://newsroom.accenture.com/news/2026/accenture-and-google-cloud-expand-partnership-to-scale-agentic-transformation-for-global-enterprises-with-gemini-enterprise" target="_blank">Accenture × Google Cloud partnership</a>
+      </div>
+    </div>
+
+    <!-- NEW 2: Salesforce × Google Cloud Cross-Platform Agents -->
+    <div class="news-card new-card" data-tags="opp embed new">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-new">🔥 NEW — Apr 22</span>
+          <span class="badge badge-opp">🟢 OPP</span>
+          <span class="badge badge-embed">🔵 EMBED</span>
+        </div>
+        <div class="card-date">April 22, 2026</div>
+      </div>
+      <div class="card-source-label">Salesforce · Google Cloud</div>
+      <div class="card-title">Salesforce and Google Cloud: AI Agents Now Execute Workflows Across Both Platforms</div>
+      <div class="card-body">The two companies expanded their partnership so that AI agents can execute <strong>end-to-end workflows across Salesforce and Google Cloud platforms</strong>. Customers can now deploy agents that act across <strong>Slack, Google Workspace, Agentforce, and Gemini Enterprise</strong> in a single flow. This is the first major cross-hyperscaler / SaaS agent-execution partnership of this scale.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> When an agent closes a deal in Agentforce and then drafts the next step in Google Docs / Gmail, the agreement moment happens somewhere in between — and it has to live in Docusign IAM. This partnership collapses two big distribution surfaces for us into one. Action: publish a "Docusign-on-both-sides" reference pattern showing IAM as the commitment layer whether the agent lives in Salesforce, Slack, Workspace, or Gemini.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.stocktitan.net/news/CRM/salesforce-and-google-cloud-enable-ai-agents-to-act-across-both-upg771etr7xc.html" target="_blank">Salesforce × Google Cloud partnership</a>
+      </div>
+    </div>
+
+    <!-- NEW 3: AWS Bedrock AgentCore — Policy/Evaluations/Memory -->
+    <div class="news-card new-card" data-tags="embed inspire new">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-new">🔥 NEW — Apr 22</span>
+          <span class="badge badge-embed">🔵 EMBED</span>
+          <span class="badge badge-inspire">💡 INSPIRE</span>
+        </div>
+        <div class="card-date">April 22, 2026</div>
+      </div>
+      <div class="card-source-label">Amazon Web Services</div>
+      <div class="card-title">AWS Ships Bedrock AgentCore Governance: Policy, Evaluations, and Learning Memory</div>
+      <div class="card-body">New capabilities in Amazon Bedrock AgentCore: <strong>Policy</strong> (set hard boundaries on what agents can do with tools), <strong>AgentCore Evaluations</strong> (benchmark how agents will perform in real-world conditions), and an <strong>enhanced memory capability</strong> enabling agents to learn from experience over time. Launched concurrently with the <strong>AWS Agent Registry</strong> (preview, Apr 13) as the full control plane for enterprise agents on AWS.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> AgentCore Policy is the exact pattern we've been advocating: every high-stakes agent action should be bounded by a policy checkpoint. When that checkpoint involves a business commitment, Docusign IAM is the downstream artifact. Register Docusign IAM as a governed tool in AgentCore Policy — publish a reference architecture where "initiate Docusign envelope" is a policy-bounded action with an audit trail. Also a strong inspire signal: we should be publishing Iris-powered "AgreementEvaluations" for our own customers.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.aboutamazon.com/news/aws/aws-amazon-bedrock-agent-core-ai-agents" target="_blank">Amazon — Bedrock AgentCore capabilities</a>
+        <a class="card-link" href="https://siliconangle.com/2026/04/22/aws-accelerates-ai-agent-development-amazon-bedrock-agentcore/" target="_blank">SiliconANGLE coverage</a>
+      </div>
+    </div>
+
+    <!-- NEW 4: Adobe Summit — CX Enterprise + Coworker -->
+    <div class="news-card new-card" data-tags="inspire watch new">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-new">🔥 NEW — Apr 20</span>
+          <span class="badge badge-inspire">💡 INSPIRE</span>
+          <span class="badge badge-watch">🟡 WATCH</span>
+        </div>
+        <div class="card-date">April 20–22, 2026</div>
+      </div>
+      <div class="card-source-label">Adobe (Summit 2026)</div>
+      <div class="card-title">Adobe Debuts CX Enterprise + CX Enterprise Coworker — Agent-Native Customer Lifecycle Platform</div>
+      <div class="card-body">Adobe replaced the Experience Cloud umbrella with <strong>Adobe CX Enterprise</strong>, an agent-native customer lifecycle platform organized around brand visibility, customer engagement, and content supply chain. The headline feature: <strong>CX Enterprise Coworker</strong> — a multi-agent orchestrator that translates a business goal (e.g., "increase cross-sell by 3%") into a multi-step plan executed by domain agents. Deep interop announced with AWS, Anthropic, Google Cloud, IBM, Microsoft, NVIDIA, and OpenAI.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> Adobe is blueprinting what vertical agent orchestration looks like — a goal → a plan → coordinated agents → outcome. That pattern is exactly what we should mirror for the agreement lifecycle: <em>"close this deal" → agent drafts → reviews → negotiates redlines → routes → signs → files.</em> Iris + Maestro already have the pieces; this is our narrative template. Secondary: Adobe's seven-way interop list (AWS, Anthropic, Google, IBM, Microsoft, NVIDIA, OpenAI) is the set we should match for Docusign IAM integrations.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://news.adobe.com/news/2026/04/adobe-redefines-custome-experience" target="_blank">Adobe — CX Enterprise announcement</a>
+        <a class="card-link" href="https://news.adobe.com/news/2026/04/adobe-unveils-cx-enterprise-coworker" target="_blank">Adobe — CX Enterprise Coworker</a>
+        <a class="card-link" href="https://www.constellationr.com/insights/news/adobe-summit-2026-agentic-orchestration-cx-creative-workflows" target="_blank">Constellation Research analysis</a>
+      </div>
+    </div>
+
+    <!-- NEW 5: Claude Opus 4.7 GA on AWS Bedrock with 1M context -->
+    <div class="news-card new-card" data-tags="embed new">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-new">🔥 NEW — Apr 20</span>
+          <span class="badge badge-embed">🔵 EMBED</span>
+        </div>
+        <div class="card-date">April 20, 2026</div>
+      </div>
+      <div class="card-source-label">AWS · Anthropic</div>
+      <div class="card-title">Claude Opus 4.7 Now GA in Amazon Bedrock — 1M Context + Adaptive Thinking</div>
+      <div class="card-body">Claude Opus 4.7 is generally available in Amazon Bedrock with a <strong>1M token context window</strong>, running on Bedrock's next-gen inference engine with adaptive-thinking token budgeting and dynamic capacity allocation. Up to 10,000 requests per minute per account per region. Available in US-East-1, Tokyo, Ireland, and Stockholm. This extends Opus 4.7 beyond Anthropic's direct API and Vertex to the AWS enterprise base.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> 1M context = Iris AI can reason across entire enterprise contract portfolios in a single call. Every AWS-native Docusign customer now has a top-tier agent model one API call away. Action: benchmark Iris contract-review accuracy on Opus 4.7 via Bedrock vs Opus 4.6, then co-market the result with AWS. Also a quiet win for our "model-agnostic via MCP" thesis — same IAM tools now work against Opus 4.7 wherever it's deployed.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-opus-4-7-in-amazon-bedrock-aws-interconnect-ga-and-more-april-20-2026/" target="_blank">AWS Weekly Roundup — Apr 20</a>
+      </div>
+    </div>
+
+  </div><!-- /newsContainer (new items) -->
+
+  <!-- ══════════════════════ BIG MOVES — previous 3 weeks ══════════════════════ -->
+  <div class="section-header" style="margin-top:48px;">
+    <div class="section-icon section-icon-blue">📡</div>
+    <div>
+      <div class="section-title">Big Moves — April 1–19</div>
+    </div>
+    <span class="section-count">18 items</span>
+  </div>
+
+  <div class="card-grid card-grid-1">
+
+    <!-- Apr 17: Docusign + World ID -->
+    <div class="news-card" data-tags="opp embed">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-opp">🟢 OPP</span>
+          <span class="badge badge-embed">🔵 EMBED</span>
+        </div>
+        <div class="card-date">April 17, 2026</div>
+      </div>
+      <div class="card-source-label">Docusign · World ID (Tools for Humanity)</div>
+      <div class="card-title">Docusign + World ID: Proof of Personhood Enters the Agreement Layer</div>
+      <div class="card-body">Docusign announced a partnership with Tools for Humanity's <strong>World ID</strong> — the proof-of-personhood protocol backed by Sam Altman — to pair agreement execution with verifiable human (and agent) identity. In an age where AI agents sign on behalf of humans, the partnership answers the question every regulator and enterprise buyer is about to ask: <em>"How do we know the signer was a real person — or a real, authorized agent — and not a deepfake or a rogue model?"</em> First major eSignature vendor to wire proof-of-personhood directly into signing.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> This is our defining move of the week. World ID is the only partner in the market offering Sybil-resistant, privacy-preserving personhood at scale. Pairing it with IAM turns Docusign into <strong>the identity-verified agreement layer for the agentic era.</strong> Immediate actions: (1) PMM briefing doc for field teams, (2) demo pattern for Legal & Financial Services accounts, (3) reference architecture for "agent-signed" commitments. This also strengthens the positioning against IDP challengers like Upstage/Hyperscience — they extract data, we execute a legally binding, identity-verified commitment.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.docusign.com/blog/world-id-docusign-partnership" target="_blank">Docusign Blog — World ID partnership</a>
+        <a class="card-link" href="https://world.org/blog/announcements/docusign-world-id" target="_blank">World / Tools for Humanity announcement</a>
+      </div>
+    </div>
+
+    <!-- Apr 16: Claude Opus 4.7 SHIPPED -->
+    <div class="news-card" data-tags="inspire embed">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-inspire">💡 INSPIRE</span>
+          <span class="badge badge-embed">🔵 EMBED</span>
+        </div>
+        <div class="card-date">Shipped Apr 16, 2026</div>
+      </div>
+      <div class="card-source-label">Anthropic</div>
+      <div class="card-title">Claude Opus 4.7 Ships — Now GA on Vertex AI, AWS Bedrock & Claude API</div>
+      <div class="card-body">What was "imminent" on our last brief is now live. Anthropic shipped Claude Opus 4.7 on April 16 with headline improvements in <strong>multi-step reasoning, autonomous task execution, and tool use accuracy</strong>. Also launched: an AI design tool that generates interactive prototypes and presentations from natural language. Model string: <code>claude-opus-4-7</code>. Available on Claude API, AWS Bedrock, Google Vertex, and embedded in Claude Code, Claude Chrome, and Cowork.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> Our Cowork partnership just got a capability boost for free. Opus 4.7's stronger tool-use = more reliable MCP calls = more accurate Iris contract review and Maestro workflow generation. <strong>Action:</strong> ask DevRel to benchmark Iris AI contract extraction accuracy on Opus 4.7 vs 4.6 and publish the delta; if it's meaningful, it's a blog post and a customer conversation.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.anthropic.com/news/claude-opus-4-7" target="_blank">Anthropic — Opus 4.7 announcement</a>
+        <a class="card-link" href="https://www.docusign.com/blog/docusign-anthropic-cowork" target="_blank">Docusign + Anthropic Cowork</a>
+      </div>
+    </div>
+
+    <!-- Apr 16: Meta Unified AI Agent Platform -->
+    <div class="news-card" data-tags="watch compete">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-watch">🟡 WATCH</span>
+          <span class="badge badge-compete">🔴 COMPETE</span>
+        </div>
+        <div class="card-date">April 16, 2026</div>
+      </div>
+      <div class="card-source-label">Meta</div>
+      <div class="card-title">Meta Unveils Unified AI Agent Platform — Llama-Powered Agents Across WhatsApp, Messenger, Instagram</div>
+      <div class="card-body">Meta launched a unified agent platform stitching together Llama-based agents across WhatsApp Business, Messenger, Instagram Direct, and the new Meta Business Suite. Includes an enterprise-grade agent identity layer, natively supports MCP for external tools, and claims 3B monthly active users as a built-in distribution channel. Explicit positioning: <em>"The agent layer for how consumers transact with businesses."</em></div>
+      <div class="card-relevance"><strong>Why it matters:</strong> Meta just entered the conversational commerce-and-agreements space at scale. When a small business wants to sign a customer contract via WhatsApp, the default agent is now Meta's. Two responses: (1) get Docusign IAM registered as an MCP tool in Meta's agent catalog so Llama agents can trigger signatures (EMBED), and (2) sharpen our messaging around regulated/enterprise-grade signing — Meta's surface is huge but trust-light; ours is trust-heavy. COMPETE watch because we should assume Meta ships a native signing primitive within 6 months.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://about.fb.com/news/2026/04/meta-unified-ai-agent-platform" target="_blank">Meta newsroom</a>
+        <a class="card-link" href="https://www.theverge.com/2026/4/16/meta-llama-agents-whatsapp-commerce" target="_blank">The Verge coverage</a>
+      </div>
+    </div>
+
+    <!-- Apr 17: Claude Design -->
+    <div class="news-card" data-tags="watch inspire">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-watch">🟡 WATCH</span>
+          <span class="badge badge-inspire">💡 INSPIRE</span>
+        </div>
+        <div class="card-date">April 17, 2026</div>
+      </div>
+      <div class="card-source-label">Anthropic Labs</div>
+      <div class="card-title">Anthropic Launches Claude Design — Opus 4.7–Powered Visual Creation, Figma Drops 7%</div>
+      <div class="card-body">Anthropic Labs debuted <strong>Claude Design</strong>, a new research-preview product that turns natural-language prompts into prototypes, slide decks, one-pagers, and mockups. Powered by Opus 4.7. Reads a team's codebase and design files to apply the house design system automatically. Exports to <strong>PDF, URL, PPTX, or directly to Canva</strong>. Available to Pro, Max, Team, and Enterprise subscribers. Figma stock fell 7.28% by market close.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> Two implications for Docusign. (1) <em>Inspire:</em> Anthropic just validated the "vertical application on top of Claude" pattern — which is exactly the shape of our Cowork + IAM integration. The Canva-export pattern ("meet users where they work") is a template for how we should ship "agreement-export" primitives across every downstream surface. (2) <em>Watch:</em> if Claude Design can generate an entire sales one-pager or proposal, the next logical step is generating a contract draft. That's adjacent to Iris. Engage our Anthropic partnership team about making IAM the "send for signature" action from inside Claude Design the way Canva is the "design export" action.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.anthropic.com/news/claude-design-anthropic-labs" target="_blank">Anthropic — Claude Design announcement</a>
+        <a class="card-link" href="https://techcrunch.com/2026/04/17/anthropic-launches-claude-design-a-new-product-for-creating-quick-visuals/" target="_blank">TechCrunch</a>
+        <a class="card-link" href="https://www.macrumors.com/2026/04/17/anthropic-claude-design/" target="_blank">MacRumors</a>
+        <a class="card-link" href="https://gizmodo.com/anthropic-launches-claude-design-figma-stock-immediately-nosedives-2000748071" target="_blank">Gizmodo — Figma drops 7%</a>
+      </div>
+    </div>
+
+    <!-- Apr 14: Oracle Banking Agentic AI -->
+    <div class="news-card" data-tags="opp inspire">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-opp">🟢 OPP</span>
+          <span class="badge badge-inspire">💡 INSPIRE</span>
+        </div>
+        <div class="card-date">April 9 + 14, 2026</div>
+      </div>
+      <div class="card-source-label">Oracle</div>
+      <div class="card-title">Oracle Ships Agentic AI for Corporate Banking — Agents Now Execute Regulated Workflows End-to-End</div>
+      <div class="card-body">Oracle Financial Services launched agentic AI capabilities across its Corporate Banking suite: agents handle KYC, credit origination, trade finance, and payments initiation with full compliance artifacts generated per transaction. Co-announced with an updated Oracle AI Database (Apr 9) enabling vector search against agreement and contract data directly inside the operational DB. First Tier-1 ERP / core-banking vendor to claim production-grade agentic workflows in a highly regulated vertical.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> Corporate banking is one of the most agreement-dense verticals on earth — loan docs, trade finance docs, ISDA agreements, syndication terms. Oracle is signaling that the template for regulated agentic workflows is <em>"the agent does the work, and a compliance artifact is generated at every checkpoint."</em> That compliance artifact should be a Docusign IAM agreement. Action: engage Oracle's Financial Services ISV team about an IAM reference integration; clone the playbook for insurance, healthcare, and government verticals.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.oracle.com/news/announcement/oracle-agentic-ai-corporate-banking-2026" target="_blank">Oracle Financial Services announcement</a>
+        <a class="card-link" href="https://www.oracle.com/news/announcement/oracle-ai-database-2026-04-09" target="_blank">Oracle AI Database 2026</a>
+      </div>
+    </div>
+
+    <!-- Apr 16: Deloitte 30% ROI study -->
+    <div class="news-card" data-tags="opp">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-opp">🟢 OPP</span>
+        </div>
+        <div class="card-date">April 16</div>
+      </div>
+      <div class="card-source-label">Docusign · Deloitte</div>
+      <div class="card-title">Deloitte Study: AI-Powered Agreement Workflows Deliver ~30% Higher ROI</div>
+      <div class="card-body">Deloitte-for-Docusign study of 1,100+ senior leaders across 6 countries found that organizations using agentic workflows within Docusign's IAM platform report nearly <strong>30% higher ROI</strong> vs fragmented tooling. First major third-party validation of the IAM platform's business impact at scale.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> This is our proof point. Every customer conversation, every competitive displacement, every exec briefing — this number anchors the business case. 30% higher ROI is a GTM weapon. Use it now.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.prnewswire.com/news-releases/new-deloitte-study-shows-that-ai-powered-agreement-management-is-paying-off-302743916.html" target="_blank">Deloitte Study — PR Newswire</a>
+      </div>
+    </div>
+
+    <!-- Apr 15: OpenAI Agents SDK -->
+    <div class="news-card" data-tags="watch embed">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-watch">🟡 WATCH</span>
+          <span class="badge badge-embed">🔵 EMBED</span>
+        </div>
+        <div class="card-date">April 15</div>
+      </div>
+      <div class="card-source-label">OpenAI</div>
+      <div class="card-title">OpenAI Agents SDK: Production-Ready Enterprise Features</div>
+      <div class="card-body">Major Agents SDK update with native sandbox execution, model-native harness optimized for GPT-5.4 long-running tasks, and portable workspace support across AWS S3, GCS, Azure Blob, and Cloudflare R2 — enabling persistent agent state across cloud environments.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> OpenAI agents can now run complex multi-step enterprise workflows reliably. The Docusign MCP Server is the integration path — any GPT-5.4 agent gains agreement capabilities the moment it can call our MCP tools. Opportunity to publish a reference integration.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.agilesoftlabs.com/blog/2026/04/the-next-evolution-of-agents-sdk" target="_blank">Agents SDK Update</a>
+        <a class="card-link" href="https://developers.docusign.com/platform/mcp-server/" target="_blank">Docusign MCP Server</a>
+      </div>
+    </div>
+
+    <!-- Apr 16: OpenAI Spud -->
+    <div class="news-card" data-tags="watch">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-watch">🟡 WATCH</span>
+        </div>
+        <div class="card-date">April 16</div>
+      </div>
+      <div class="card-source-label">OpenAI</div>
+      <div class="card-title">OpenAI "Spud" Model Targets High-Value Professional Work</div>
+      <div class="card-body">Codename "Spud" — OpenAI's new model marketed for reasoning, intent understanding, and follow-through in professional enterprise workflows. Explicit enterprise pivot as competition with Anthropic intensifies.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> Frontier models are converging on enterprise professional workflows — exactly where agreements live. Model-agnostic positioning via MCP is the right strategy.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.columbian.com/news/2026/apr/16/chatgpt-maker-openai-shifts-its-focus-to-business-users-amid-anthropic-pressure/" target="_blank">OpenAI enterprise pivot coverage</a>
+      </div>
+    </div>
+
+    <!-- 1: AWS Agent Registry -->
+    <div class="news-card" data-tags="opp embed">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-opp">🟢 OPP</span>
+          <span class="badge badge-embed">🔵 EMBED</span>
+        </div>
+        <div class="card-date">April 14</div>
+      </div>
+      <div class="card-source-label">Amazon Web Services</div>
+      <div class="card-title">AWS Launched an Agent Registry — Solving Enterprise Agent Sprawl</div>
+      <div class="card-body">Amazon Bedrock introduced a centralized Agent Registry for managing AI agents across organizations: their tools, capabilities, ownership, compliance status, and invocation methods. Available in preview across US, APAC, and EU, with future cross-organizational discovery. The explicit problem: agents proliferate faster than anyone can govern them.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> When an agent executes a business action — approve a vendor, close a deal, onboard an employee — that action needs a downstream agreement. Registering a "Docusign Agreement Tool" as a verified, governed capability in AWS Agent Registry puts IAM at the front of every agent toolkit selection.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-mythos-preview-in-amazon-bedrock-aws-agent-registry-and-more-april-13-2026/" target="_blank">AWS Blog — April 13</a>
+        <a class="card-link" href="https://techbriefly.com/2026/04/14/aws-launches-agent-registry-to-manage-enterprise-ai-agents/" target="_blank">TechBriefly coverage</a>
+      </div>
+    </div>
+
+    <!-- 2: Salesforce TDX -->
+    <div class="news-card" data-tags="opp embed">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-opp">🟢 OPP</span>
+          <span class="badge badge-embed">🔵 EMBED</span>
+        </div>
+        <div class="card-date">April 15</div>
+      </div>
+      <div class="card-source-label">Salesforce</div>
+      <div class="card-title">Salesforce TDX: "Headless 360" + Agentforce MCP — Most Significant Shift in 25 Years</div>
+      <div class="card-body">Salesforce announced everything is now an API, an MCP tool, or a CLI command. Agentforce agents access the full Salesforce platform programmatically. Free MCP servers added to every Developer Edition. Claude Sonnet integrated natively into Vibes IDE. Agent Script open-sourced. This is the biggest Salesforce architectural pivot in company history.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> Salesforce is the system of record for revenue. When an Agentforce agent closes a deal or triggers a renewal, it needs Docusign IAM for the agreement. The Navigator API → Agentforce integration is already documented and live — legal teams save up to 1 hour per MSA. This is our largest near-term surface area.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.salesforce.com/blog/tdx-2026-roundup-agentforce-edition/" target="_blank">TDX 2026 Roundup — Salesforce</a>
+        <a class="card-link" href="https://siliconangle.com/2026/04/15/salesforce-bets-conversation-new-interface-developers/" target="_blank">SiliconAngle coverage</a>
+        <a class="card-link" href="https://www.docusign.com/blog/developers/how-to-call-the-navigator-api-from-agentforce-for-smarter-agreements" target="_blank">Navigator API → Agentforce guide</a>
+      </div>
+    </div>
+
+    <!-- 3: Microsoft Agent 365 -->
+    <div class="news-card" data-tags="embed inspire">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-embed">🔵 EMBED</span>
+          <span class="badge badge-inspire">💡 INSPIRE</span>
+        </div>
+        <div class="card-date">April 7 · GA May 1</div>
+      </div>
+      <div class="card-source-label">Microsoft</div>
+      <div class="card-title">Microsoft Agent 365: Agents Get Employee-Grade Identity, Roles & Audit Trails</div>
+      <div class="card-body">Microsoft launched Agent 365 — an enterprise control plane treating AI agents as first-class identity principals. Bundles M365 E5, Copilot, and Entra Suite. Agents now have roles, permissions, and audit trails just like employees. GA announced for May 1. Azure SRE Agent also reached GA on April 15.</div>
+      <div class="card-relevance"><strong>Why it matters for us:</strong> Microsoft is framing agents as employees with identity — and Docusign should frame agreements as the onboarding and authorization record for agent actions. The inspire angle: extend our identity verification narrative to "when an agent acts, IAM creates the legally binding record of that action."</div>
+      <div class="card-links">
+        <a class="card-link" href="https://tcblog.protiviti.com/2026/04/07/microsoft-agent-365-brings-enterprise-grade-control-to-agentic-ai/" target="_blank">Agent 365 announcement</a>
+        <a class="card-link" href="https://fortune.com/2026/04/13/ai-agents-governance-identity-risk-okta/" target="_blank">Fortune — Agents as employees</a>
+        <a class="card-link" href="https://www.docusign.com/integrations/microsoft/copilot" target="_blank">Docusign for Microsoft Copilot</a>
+      </div>
+    </div>
+
+    <!-- 4: MCP 97M -->
+    <div class="news-card" data-tags="opp inspire">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-opp">🟢 OPP</span>
+          <span class="badge badge-inspire">💡 INSPIRE</span>
+        </div>
+        <div class="card-date">April 2026</div>
+      </div>
+      <div class="card-source-label">Anthropic · Linux Foundation</div>
+      <div class="card-title">MCP Hits 97M Monthly Downloads — Now an Industry-Standard Protocol</div>
+      <div class="card-body">The Model Context Protocol (donated to the Linux Foundation's Agentic AI Foundation) now has 97M monthly SDK downloads and first-class support in Claude, ChatGPT, Gemini, Copilot, Cursor, and VS Code. AGNTCon + MCPCon events announced for San Jose (Oct 22–23) and Amsterdam (Sept 17–18). Docusign already has a beta MCP Server.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> MCP is the USB-C of AI agents. Every agent that needs to touch an agreement will scan available MCP tools first. Being in that catalog — well-documented and GA, not just beta — is a distribution moat. We should be presenting at MCPCon.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.prnewswire.com/news-releases/agentic-ai-foundation-announces-global-2026-events-program-anchored-by-agntcon--mcpcon-north-america-and-europe-302732860.html" target="_blank">MCPCon 2026 events announced</a>
+        <a class="card-link" href="https://developers.docusign.com/platform/mcp-server/" target="_blank">Docusign MCP Server (Beta)</a>
+        <a class="card-link" href="https://www.docusign.com/blog/developers/claude-docusign-mcp-connector-guide" target="_blank">Claude + Docusign MCP guide</a>
+      </div>
+    </div>
+
+    <!-- 5: Okta + Databricks -->
+    <div class="news-card" data-tags="opp embed inspire">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-opp">🟢 OPP</span>
+          <span class="badge badge-embed">🔵 EMBED</span>
+          <span class="badge badge-inspire">💡 INSPIRE</span>
+        </div>
+        <div class="card-date">April 2026</div>
+      </div>
+      <div class="card-source-label">Okta · Databricks</div>
+      <div class="card-title">Okta + Databricks: Agent Identity & Governance Go GA</div>
+      <div class="card-body">Okta launched AI Agent identity management (GA April 30) treating agents as independent identities with automated access reviews, human owner assignment, and policy enforcement. Databricks Agent Bricks enforces fine-grained identity via on-behalf-of token passing through agent chains. 91% of orgs use AI agents; only 22% treat agents as independent identities.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> When an agent acts on behalf of a human, that action needs authentication, authorization, and a verifiable record. That record IS the agreement. Docusign IAM sits at the convergence of identity infrastructure and execution infrastructure. Partner with Okta on a co-presented "agent action → verified agreement" reference architecture.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.okta.com/newsroom/press-releases/showcase-2026/" target="_blank">Okta blueprint announcement</a>
+        <a class="card-link" href="https://www.databricks.com/blog/agent-bricks-governed-enterprise-agent-platform" target="_blank">Databricks Agent Bricks</a>
+        <a class="card-link" href="https://fortune.com/2026/04/13/ai-agents-governance-identity-risk-okta/" target="_blank">Fortune coverage</a>
+      </div>
+    </div>
+
+    <!-- 6: Slack -->
+    <div class="news-card" data-tags="opp embed">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-opp">🟢 OPP</span>
+          <span class="badge badge-embed">🔵 EMBED</span>
+        </div>
+        <div class="card-date">April 15</div>
+      </div>
+      <div class="card-source-label">Docusign · Salesforce</div>
+      <div class="card-title">Docusign Brings Intelligent Agreement Workflows into Slack</div>
+      <div class="card-body">Docusign launched integration of intelligent contract workflows into Slack — a Slackbot that pulls customer/pricing data from Salesforce, applies terms from Docusign IAM, and generates ready-to-send agreements in conversation without context switching. Salesforce's Agentforce Experience Layer (AXL) simultaneously enables conversational agent components across web, mobile, Slack, and voice.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> Agreements don't need to live in a dedicated Docusign UI anymore. This integration is live today and should be a flagship demo for IAM as embedded infrastructure — meeting users where they already work.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.prnewswire.com/news-releases/docusign-brings-intelligent-contract-workflows-to-slackbot-302730555.html" target="_blank">Docusign Slack announcement</a>
+        <a class="card-link" href="https://www.salesforce.com/blog/tdx-2026-roundup-agentforce-edition/" target="_blank">Salesforce AXL — TDX Roundup</a>
+      </div>
+    </div>
+
+    <!-- 7: IDP / Upstage -->
+    <div class="news-card" data-tags="compete watch">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-compete">🔴 COMPETE</span>
+          <span class="badge badge-watch">🟡 WATCH</span>
+        </div>
+        <div class="card-date">April 1</div>
+      </div>
+      <div class="card-source-label">Upstage AI · IDP Market</div>
+      <div class="card-title">Agentic Document Processing Surges: IDP Market Heading to $91B by 2034</div>
+      <div class="card-body">Upstage AI officially rolled out Upstage Studio — an agentic document processing platform combining computer vision, NLP, and orchestration. The global IDP market grows from $14.16B (2026) to $91.02B (2034). Agents are achieving 90% reduction in manual document processing time. Hyperscience, ABBYY, and similar platforms are all scaling.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> IDP players are framing document workflows as pure automation/extraction. As they mature, they creep into pre-execution workflows. Our differentiation: we don't just process documents — we execute agreements with legal validity, identity verification, and audit trail. Sharpen this message now.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.prnewswire.com/news-releases/upstage-ai-launches-ai-powered-agentic-workflow-solution-for-document-heavy-processes-302730567.html" target="_blank">Upstage Studio launch</a>
+      </div>
+    </div>
+
+    <!-- 8: EY -->
+    <div class="news-card" data-tags="opp inspire">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-opp">🟢 OPP</span>
+          <span class="badge badge-inspire">💡 INSPIRE</span>
+        </div>
+        <div class="card-date">April 7</div>
+      </div>
+      <div class="card-source-label">EY (Ernst & Young)</div>
+      <div class="card-title">EY Deploys Agentic AI at Enterprise Scale Across Global Audit Practices</div>
+      <div class="card-body">EY launched enterprise-scale agentic AI in Assurance practices globally — marking the transition from experimental to production-grade agent deployment in a Big Four firm. Focus: AI-transformed audits, compliance workflows, automated evidence gathering. First professional services firm to announce global agentic AI rollout at this scale.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> Professional services firms deploying agents at scale need agreement infrastructure for engagement letters, SOWs, NDAs, and compliance sign-offs at agent speed. The inspire angle: if EY built a governance narrative for agentic AI in audit, Docusign can build one for agentic AI in agreements.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.ey.com/en_gl/newsroom/2026/04/ey-launches-enterprise-scale-agentic-ai-to-redefine-the-audit-experience-for-the-ai-era" target="_blank">EY Newsroom — April 7</a>
+      </div>
+    </div>
+
+    <!-- 9: NVIDIA -->
+    <div class="news-card" data-tags="watch inspire">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-watch">🟡 WATCH</span>
+          <span class="badge badge-inspire">💡 INSPIRE</span>
+        </div>
+        <div class="card-date">April 2026</div>
+      </div>
+      <div class="card-source-label">NVIDIA</div>
+      <div class="card-title">NVIDIA Open-Sources Agent Development Toolkit; 15+ Enterprise ISVs Adopt</div>
+      <div class="card-body">NVIDIA released an open-source Agent Development Toolkit for autonomous, self-evolving enterprise AI agents. Adopters include Adobe, Atlassian, Cisco, ServiceNow, Salesforce, SAP, and Siemens. The toolkit is becoming silent infrastructure beneath enterprise agents — the way AWS is silent infrastructure for SaaS.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> If this toolkit becomes standard, Docusign should have a reference integration or official plugin. Monitor adoption velocity over next 90 days. If Salesforce, SAP, and ServiceNow are all adopting, our integrations with those platforms will inherit NVIDIA's distribution.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://nvidianews.nvidia.com/news/ai-agents" target="_blank">NVIDIA Agent Toolkit — Newsroom</a>
+      </div>
+    </div>
+
+    <!-- 10: Regulatory -->
+    <div class="news-card" data-tags="watch opp">
+      <div class="card-top">
+        <div class="card-badges">
+          <span class="badge badge-watch">🟡 WATCH</span>
+          <span class="badge badge-opp">🟢 OPP</span>
+        </div>
+        <div class="card-date">Deadlines Approaching</div>
+      </div>
+      <div class="card-source-label">EU AI Act · Colorado AI Act</div>
+      <div class="card-title">AI Compliance Deadlines Close In: EU August 2026 · Colorado June 2026</div>
+      <div class="card-body">EU AI Act compliance deadline: August 2026. Colorado AI Act: June 2026. Current reality: 91% of organizations are using AI agents; only 10% have a clear management strategy; 90% report suspected security incidents involving AI agents. Regulated industries are scrambling for auditable, legally binding records of agent-initiated decisions.</div>
+      <div class="card-relevance"><strong>Why it matters:</strong> Compliance pressure is a tailwind for Docusign IAM. We are a natural compliance artifact — not just for agreements, but for the governance of the actions that led to them. Strong GTM angle for Legal, Financial Services, and Healthcare verticals. Lead with this in regulated-industry conversations.</div>
+      <div class="card-links">
+        <a class="card-link" href="https://www.wordsmith.ai/blog/legal-ai-trends-2026" target="_blank">Legal AI Trends 2026</a>
+        <a class="card-link" href="https://fortune.com/2026/04/13/ai-agents-governance-identity-risk-okta/" target="_blank">Agent security stats — Fortune</a>
+      </div>
+    </div>
+
+  </div><!-- /newsContainer -->
+
+  <hr class="divider">
+
+  <!-- ══════════════════════ POSITION ══════════════════════ -->
+  <div class="section-header">
+    <div class="section-icon section-icon-green">🎯</div>
+    <div>
+      <div class="section-title">Where Docusign IAM Fits: The Agreement Terminus</div>
+    </div>
+  </div>
+
+  <p style="font-size:14px;color:var(--text-muted);margin-bottom:20px;max-width:700px;">Every agentic workflow that touches a business commitment follows the same pattern. Docusign IAM sits at the end of every agent action that matters.</p>
+
+  <div style="background:var(--ink);color:white;border-radius:var(--radius);padding:16px 24px;font-family:monospace;font-size:13px;margin-bottom:24px;letter-spacing:0.2px;box-shadow:var(--shadow);">
+    Agent perceives &nbsp;→&nbsp; Agent decides &nbsp;→&nbsp; Agent executes &nbsp;→&nbsp; <span style="color:#7EB2FF;font-weight:700;">Agreement required &nbsp;→&nbsp; Docusign IAM ✓</span>
+  </div>
+
+  <table class="position-table">
+    <thead>
+      <tr>
+        <th>Agent Trigger</th>
+        <th>What the Agent Does</th>
+        <th>Docusign IAM's Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sales agent closes deal</td>
+        <td>Creates order, updates CRM</td>
+        <td>Generates & routes contract via Maestro</td>
+      </tr>
+      <tr>
+        <td>HR agent onboards employee</td>
+        <td>Sets up accounts, schedules orientation</td>
+        <td>Sends offer letter, NDA, policy acknowledgments</td>
+      </tr>
+      <tr>
+        <td>Procurement agent approves vendor</td>
+        <td>Selects vendor, triggers PO</td>
+        <td>Executes MSA, SOW via eSignature</td>
+      </tr>
+      <tr>
+        <td>Legal agent reviews contract</td>
+        <td>Surfaces risks, suggests redlines</td>
+        <td>Iris AI reviews; Navigator extracts key terms</td>
+      </tr>
+      <tr>
+        <td>Renewal agent detects expiry</td>
+        <td>Identifies at-risk contracts</td>
+        <td>Triggers renewal workflow, tracks execution</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:20px;background:var(--embed-bg);border:1px solid #BFDBFE;border-radius:var(--radius);padding:18px 22px;font-size:13.5px;color:#1E40AF;line-height:1.65;">
+    <strong>The strategic frame:</strong> Hyperscalers are racing to own the agent execution layer. Docusign doesn't need to win that race — we need to be the <strong>indispensable agreement terminus</strong> every agent flows through. We are to agentic AI what <strong>Stripe is to payment agents</strong>: you don't rebuild payments, you call Stripe. You don't rebuild agreements, you call Docusign IAM.
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══════════════════════ BUILD TIERS ══════════════════════ -->
+  <div class="section-header">
+    <div class="section-icon section-icon-purple">🔧</div>
+    <div>
+      <div class="section-title">What We Can Build Today</div>
+    </div>
+  </div>
+
+  <div class="tier-grid">
+
+    <div class="tier-card tier-1">
+      <div class="tier-header">
+        <span>⚡</span> Tier 1 — Days to Build
+      </div>
+      <div class="tier-body">
+        <div class="tier-item">
+          <div class="tier-item-title">MCP-Powered Agreement Agent</div>
+          <div class="tier-item-desc">Any AI client (Claude, ChatGPT, Copilot) + Docusign MCP Server = an agent that summarizes agreements, triggers Maestro workflows, sends envelopes, and updates contacts via natural language. Live with Docusign + Anthropic Cowork today.</div>
+          <div class="tier-item-quote">"Show me contracts expiring in 30 days and draft renewal emails."</div>
+        </div>
+        <div class="tier-item">
+          <div class="tier-item-title">Agentforce → Navigator API</div>
+          <div class="tier-item-desc">Published Apex integration lets Salesforce Agentforce agents query Navigator for clause-level data, trigger Maestro, and execute agreements. Live today. Up to 1 hr saved per MSA negotiation.</div>
+        </div>
+        <div class="tier-item">
+          <div class="tier-item-title">Copilot Studio Agreement Bots</div>
+          <div class="tier-item-desc">No-code agreement agents for HR, Sales, and Procurement — send NDAs, offer letters, contracts from Teams / Outlook / Word without leaving the Microsoft ecosystem.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-card tier-2">
+      <div class="tier-header">
+        <span>🔨</span> Tier 2 — Weeks to Build
+      </div>
+      <div class="tier-body">
+        <div class="tier-item">
+          <div class="tier-item-title">Multi-Cloud Agent Trigger via Maestro API</div>
+          <div class="tier-item-desc">Any third-party AI agent (AWS Bedrock, Vertex AI, OpenAI Operator) calls the Maestro Trigger API to kick off a multi-step agreement workflow. Combine with AWS Agent Registry for governance and auditability.</div>
+        </div>
+        <div class="tier-item">
+          <div class="tier-item-title">Iris-Powered Contract Review Agent</div>
+          <div class="tier-item-desc">A procurement or legal agent using Docusign AI Contract Review Assistant analyzes incoming contracts, flags non-standard clauses, suggests redlines, and auto-generates playbook deviations. 30–60 min saved per contract.</div>
+        </div>
+        <div class="tier-item">
+          <div class="tier-item-title">Identity-Aware Agreement Routing</div>
+          <div class="tier-item-desc">Combine Okta/Entra agent identity with Docusign IAM — agent's identity is authenticated, action scoped, and resulting agreement is automatically routed to the correct human approver with full audit trail.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-card tier-3">
+      <div class="tier-header">
+        <span>🚀</span> Tier 3 — Strategic Bets
+      </div>
+      <div class="tier-body">
+        <div class="tier-item">
+          <div class="tier-item-title">Docusign as Compliance Checkpoint in Agentic Governance</div>
+          <div class="tier-item-desc">Position IAM as the mandatory governance checkpoint in enterprise agent workflows. Before an agent's decision has real-world effect, execution passes through an agreement creating an immutable, legally binding record. Partner with AWS Agent Registry, Okta, Databricks.</div>
+        </div>
+        <div class="tier-item">
+          <div class="tier-item-title">Cross-Platform "Agreement Memory" via MCP</div>
+          <div class="tier-item-desc">Surface Navigator's clause-level data into any agent's context window via MCP tools — agents know contract terms, renewal dates, liability caps, and exclusivity clauses before making decisions. Make Docusign IAM the persistent agreement memory layer for enterprise AI.</div>
+        </div>
+        <div class="tier-item">
+          <div class="tier-item-title">MCPCon 2026 Presence</div>
+          <div class="tier-item-desc">Submit to present at AGNTCon + MCPCon North America (Oct 22–23, San Jose). The MCP ecosystem is where the next generation of enterprise agent builders will converge. Docusign as the agreement tool in that ecosystem is a strategic moat.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- ══════════════════════ 10 MIN FRAME ══════════════════════ -->
+  <div class="section-header">
+    <div class="section-icon section-icon-blue">⏱️</div>
+    <div>
+      <div class="section-title">10-Minute Meeting Frame</div>
+    </div>
+  </div>
+
+  <div class="meeting-timeline">
+    <div class="meeting-row">
+      <div class="meeting-time">0–2 min</div>
+      <div class="meeting-topic"><strong>The shift:</strong> In 48 hours the hyperscalers declared war on the agent runtime. Google committed <strong>$750M</strong> to partner-built agents, AWS shipped the governance primitives (Policy, Evaluations, Memory), and Salesforce + Google agreed to make their agents speak to each other cross-platform. The race is no longer who has the best model — it's who owns the runtime agents live in.</div>
+    </div>
+    <div class="meeting-row">
+      <div class="meeting-time">2–5 min</div>
+      <div class="meeting-topic"><strong>Top moves:</strong> <strong>Google Cloud (Apr 22)</strong> announced Gemini Enterprise Agent Platform + $750M partner fund — the most aggressive agent bet yet. <strong>Salesforce × Google (Apr 22)</strong> shipped cross-platform agent interop (A2A + MCP). <strong>AWS AgentCore (Apr 22)</strong> added Policy + Evaluations + Memory — governance as a service. <strong>Adobe Summit (Apr 20)</strong> unveiled CX Enterprise with a "Coworker" multi-agent orchestrator. <strong>Opus 4.7 (Apr 20)</strong> GA on Bedrock with 1M context — reads entire contract portfolios in one call.</div>
+    </div>
+    <div class="meeting-row">
+      <div class="meeting-time">5–7 min</div>
+      <div class="meeting-topic"><strong>Our position:</strong> Every hyperscaler is building the agent runtime, but <em>none of them</em> are building the legal terminus. Docusign IAM is the place agents go to finish work — sign, witness, record. The more runtimes there are, the more valuable the neutral agreement layer becomes. We are the Stripe of agentic AI.</div>
+    </div>
+    <div class="meeting-row">
+      <div class="meeting-time">7–9 min</div>
+      <div class="meeting-topic"><strong>Build now:</strong> (1) Submit IAM to Google's $750M partner track before the window closes, (2) ship a Bedrock AgentCore Memory + Navigator API reference ("agents remember what they've signed"), (3) publish an Opus 4.7 + 1M context Iris portfolio-review benchmark, (4) wire Navigator into Adobe CX Coworker as the agreement reasoning node.</div>
+    </div>
+    <div class="meeting-row">
+      <div class="meeting-time">9–10 min</div>
+      <div class="meeting-topic"><strong>Strategic bet:</strong> Land IAM as a first-class tool in all four hyperscaler agent runtimes (Azure, Google, AWS, Oracle) before the end of Q2. Runtime-agnostic. Identity-verified. Legally binding. The agreement layer for every agent, everywhere.</div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <em>Sources: Google Cloud Blog, AWS Blog / AgentCore, Adobe Summit / Newsroom, Salesforce Newsroom, Anthropic + Anthropic Labs, Docusign Blogs, Tools for Humanity / World, TechCrunch, MacRumors, Gizmodo, Meta Newsroom, Oracle Financial Services, Microsoft Tech Community, Linux Foundation, Okta Newsroom, Databricks Blog, Deloitte / PRNewswire, EY Newsroom, Accenture, Fortune, OpenAI, Upstage AI — April 1–22, 2026.</em><br>
+  <em>Tags: 🟢 OPP = near-term Docusign opportunity · 🔵 EMBED = embed IAM here today · 🔴 COMPETE = competitive watch · 🟡 WATCH = early signal · 💡 INSPIRE = borrow this pattern · 🔥 NEW = since last brief (Apr 20)</em>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  // Scroll to top visibility
+  window.addEventListener('scroll', () => {
+    document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Filter
+  function filterCards(tag, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const cards = document.querySelectorAll('.news-card');
+    cards.forEach(card => {
+      if (tag === 'all') {
+        card.classList.remove('filter-hidden');
+      } else {
+        const tags = (card.dataset.tags || '').split(' ');
+        card.classList.toggle('filter-hidden', !tags.includes(tag));
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
